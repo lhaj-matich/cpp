@@ -25,11 +25,11 @@ int main(int argc, char **argv)
     std::string str1;
     std::string str2;
 
-    str1.assign(argv[2]);
-    str2.assign(argv[3]);
-    fileName.assign(argv[1]);
-    if (argc > 1)
+    if (argc > 3)
     {
+        str1.assign(argv[2]);
+        str2.assign(argv[3]);
+        fileName.assign(argv[1]);
         std::ifstream originalFile;
         std::ofstream replaceFile;
 
@@ -43,6 +43,7 @@ int main(int argc, char **argv)
                 replaceFile << line << std::endl;
             }
             originalFile.close();
+            replaceFile.close();
         }
         else
             std::cout << "Error could not open the file." << std::endl;
