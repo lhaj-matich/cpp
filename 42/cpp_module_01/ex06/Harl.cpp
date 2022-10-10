@@ -38,24 +38,22 @@ void    Harl::error()
 void    Harl::complain(std::string level)
 {
     complains functions[] = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
-    int lvl = findLevel(level);
+    int lvl;
     
+    lvl = findLevel(level);
     switch (lvl)
     {
         case 0:
             (this->*functions[0])();
-            break;
         case 1:
             (this->*functions[1])();
-            break;
         case 2:
             (this->*functions[2])();
-            break;
         case 3:
             (this->*functions[3])();
-            break;
+        break;
         default:
-            std::cout << "Invalid level." << std::endl;
-            break;
+            std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
+        break;
     }
 }
