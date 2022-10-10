@@ -15,12 +15,12 @@ Weapon::Weapon(std::string type)
     this->type = type;
 }
 
+Weapon::Weapon()
+{
+    this->type = "Sword";
+}
+
 Weapon::~Weapon()
 {
     std::cout << "Weapon destroyed successfully." << std::endl;
-}
-
-Weapon::Weapon()
-{
-    this->type = "7ajra";
 }
