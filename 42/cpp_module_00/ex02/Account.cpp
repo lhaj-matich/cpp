@@ -82,11 +82,6 @@ void    Account::_displayTimestamp( void )
     std::cout << "[" << buffer << "] ";
 }
 
-Account::Account()
-{
-    std::cout << "The default constructor is called" << std::endl;
-}
-
 
 Account::Account(int initialDeposit)
 {
