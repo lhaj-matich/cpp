@@ -23,12 +23,11 @@ int main(void)
     command = get_command();
     while (!command.empty())
     {
-        
-        if (!strcmp(command.c_str(), "exit"))
+        if (!strcmp(command.c_str(), "EXIT"))
             exit(1);
-        else if (!strcmp(command.c_str(), "search"))
+        else if (!strcmp(command.c_str(), "SEARCH"))
             book.search_contact();
-        else if (!strcmp(command.c_str(), "add"))
+        else if (!strcmp(command.c_str(), "ADD"))
             book.contact_add();
         command = get_command();
     }

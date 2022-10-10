@@ -56,22 +56,22 @@ int    Contact::set_contact(int index)
     std::cout << "Enter your firstname: ";
     getline(std::cin, this->firstname);
     if (this->firstname.empty())
-        return (0);
+        exit(1);
     std::cout << "Enter your lastname: ";
     getline(std::cin, this->lastname);
     if (this->lastname.empty())
-        return (0);
+        exit(1);
     std::cout << "Enter your nickname: ";
     getline(std::cin, this->nickname);
     if (this->nickname.empty())
-        return (0);
+        exit(1);
     std::cout << "Enter your phone number: ";
     getline(std::cin, this->phone_number);
     if (this->phone_number.empty())
-        return (0);
+        exit(1);
     std::cout << "Enter your darkest secret: ";
     getline(std::cin, this->dark_secret);
     if (this->dark_secret.empty())
-        return (0);
+        exit(1);
     return (1);
 }
