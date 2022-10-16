@@ -2,6 +2,7 @@
 
 HumanB::HumanB(std::string name)
 {
+    std::cout << "The HumanB default constrcutor has been called" << std::endl;
     this->name = name;
 }
 

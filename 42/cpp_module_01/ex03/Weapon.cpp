@@ -10,13 +10,19 @@ void Weapon::setType(std::string type)
     this->type = type;
 }
 
-Weapon::Weapon(std::string type)
-{ 
+Weapon::Weapon(char *type)
+{
+    if (type == NULL)
+    {
+        this->type = "Sword";
+        return ;
+    }
     this->type = type;
 }
 
 Weapon::Weapon()
 {
+    std::cout << "The default constructor has been called" << std::endl;
     this->type = "Sword";
 }
 
