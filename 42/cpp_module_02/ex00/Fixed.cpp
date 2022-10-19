@@ -34,6 +34,7 @@ void    Fixed::setRawBits(int raw)
 
 Fixed & Fixed::operator=(const Fixed &rhs)
 {
+    std::cout << "Copy assigment operator called" << std::endl;
     this->fixed_value = rhs.getRawBits();
     return (*this);
 } 
