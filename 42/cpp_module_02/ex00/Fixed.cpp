@@ -22,16 +22,18 @@ Fixed::Fixed(Fixed const &other)
 
 int Fixed::getRawBits() const
 {
-    std::cout << "Get raw bits called" << std::endl;
+    std::cout << "getRawBits member function called" << std::endl;
+    return (this->fixed_value);
 }
 
 void    Fixed::setRawBits(int raw)
 {
-    std::cout << "Set raw bits called" << std::endl;
+    this->fixed_value = raw;
+    std::cout << "setRawBits member function called" << std::endl;
 }
 
 Fixed & Fixed::operator=(const Fixed &rhs)
 {
     this->fixed_value = rhs.getRawBits();
     return (*this);
-}
+} 
