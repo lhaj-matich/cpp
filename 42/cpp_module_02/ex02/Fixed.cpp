@@ -143,14 +143,14 @@ Fixed &		Fixed::operator--() {
 }
 
 Fixed		Fixed::operator++(int) {
-	Fixed tmp(*this);
+	Fixed fixed(*this);
 	this->fixed_value++;
-	return tmp;
+	return fixed;
 }
 Fixed		Fixed::operator--(int) {
-	Fixed tmp(*this);
+	Fixed fixed(*this);
 	this->fixed_value--;
-	return tmp;
+	return fixed;
 }
 
 // Max and min functions
