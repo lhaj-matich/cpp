@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 08:48:30 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/10/16 12:19:10 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/10/22 12:43:57 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ class Weapon
     public:
         std::string const & getType();
         void setType(std::string type);
-        Weapon(char *type);
+        Weapon (std::string type);
+        Weapon(int *type);
         Weapon();
         ~Weapon();
 };
