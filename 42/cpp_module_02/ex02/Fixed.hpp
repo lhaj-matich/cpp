@@ -2,6 +2,7 @@
 #define _FIXED_H_
 
 #include <iostream>
+#include <cmath>
 
 class Fixed 
 {
@@ -14,7 +15,7 @@ class Fixed
         Fixed();
         ~Fixed();
         Fixed(const Fixed &other);
-        Fixed & operator=(const Fixed &rhs);
+        Fixed & operator=(Fixed const &rhs);
 
         int     getRawBits() const;
         int     toInt(void) const;
@@ -28,20 +29,21 @@ class Fixed
         bool    operator== (const Fixed &rhs) const;
         bool    operator!= (const Fixed &rhs) const;
         // Arithmetic operators.
-        Fixed & operator+(const Fixed &rhs);
-        Fixed & operator-(const Fixed &rhs);
-        Fixed & operator/(const Fixed &rhs);
-        Fixed & operator*(const Fixed &rhs);
+        Fixed operator+(Fixed const &rhs);
+        Fixed operator-(Fixed const &rhs);
+        Fixed operator/(Fixed const &rhs);
+        Fixed operator*(Fixed const &rhs);
 
         // Increment and decrement operators.
-        Fixed & operator++(int);
+        Fixed operator++(int);
         Fixed & operator++();
-        Fixed & operator--(int);
+        Fixed operator--(int);
         Fixed & operator--();
-        static Fixed & min(Fixed & lhs, Fixed & rhs);
-        // static const Fixed & min(const Fixed & lhs, const Fixed & rhs);
-        // static const Fixed & max(const Fixed & lhs, const Fixed & rhs);
-        static Fixed & max(Fixed & lhs, Fixed & rhs);
+        static Fixed & min(Fixed &, Fixed &);
+        static const Fixed & min(Fixed const & value1, Fixed const & value2);
+
+        static const Fixed & max(Fixed const & value1, Fixed const & value2);
+        static Fixed & max(Fixed & value1, Fixed & value2);
 };
 
 std::ostream &operator << (std::ostream &output,const Fixed &input);
