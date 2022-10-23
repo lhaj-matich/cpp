@@ -12,7 +12,7 @@ int main(void)
 
 
     std::cout << "brain Value: " << brain << std::endl;
-    std::cout << "balue pointed to by stringPTR: " << stringPTR << std::endl;
+    std::cout << "balue pointed to by stringPTR: " << *stringPTR << std::endl;
     std::cout << "value pointed to by stringREF: " << stringREF << std::endl;
 
     return (0);

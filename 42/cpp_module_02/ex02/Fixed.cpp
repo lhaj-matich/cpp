@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Fixed.cpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/22 13:18:35 by ochoumou          #+#    #+#             */
+/*   Updated: 2022/10/22 20:39:40 by ochoumou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Fixed.hpp"
 
 // ::Constructors and destructors::
@@ -137,20 +149,22 @@ Fixed &		Fixed::operator++() {
 	this->fixed_value++;
 	return *this;
 }
+
+Fixed 	Fixed::operator++(int) {
+    Fixed fixed(*this);
+    this->fixed_value++;
+    return fixed;
+}
+
 Fixed &		Fixed::operator--() {
 	this->fixed_value--;
 	return *this;
 }
 
-Fixed		Fixed::operator++(int) {
+Fixed   Fixed::operator--(int) {
 	Fixed fixed(*this);
-	this->fixed_value++;
-	return fixed;
-}
-Fixed		Fixed::operator--(int) {
-	Fixed fixed(*this);
-	this->fixed_value--;
-	return fixed;
+    this->fixed_value--;
+    return fixed;
 }
 
 // Max and min functions

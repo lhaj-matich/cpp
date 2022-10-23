@@ -5,15 +5,18 @@
 std::string    replace_line(std::string line, std::string needle, std::string added)
 {
     int i;
+    int lineLength;
     int pos;
 
     i = 0;
+    lineLength = line.length();
     pos = line.find(needle);
-    while (pos != -1)
+    while (pos != -1 && i < lineLength && needle.compare(""))
     {
         line.erase(pos, needle.length());
         line.insert(pos, added);
-        pos = line.find(needle);
+        pos = line.find(needle, i);
+        i = pos + needle.length();
     }
     return line;
 }
