@@ -23,7 +23,7 @@ class ClapTrap
 		void	takeDamage(unsigned int);
 		void	beRepaired(unsigned int);
 		
-	private:
+	protected:
 		std::string _name;
 		int _health;
 		int _energy;
