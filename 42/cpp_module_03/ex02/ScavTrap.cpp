@@ -10,9 +10,9 @@ ScavTrap::ScavTrap()
 	std::cout << "\e[0;33mDefault Constructor called of ScavTrap\e[0m" << std::endl;
 }
 
-ScavTrap::ScavTrap(std::string name): ClapTrap(name)
+ScavTrap::ScavTrap(std::string name)
 {
-	// _name = name;
+	_name = name;
 	_health = 100;
 	_energy = 50;
 	_damage = 20;
@@ -20,7 +20,7 @@ ScavTrap::ScavTrap(std::string name): ClapTrap(name)
 }
 
 
-ScavTrap::ScavTrap(const ScavTrap &copy) : ClapTrap(copy._name)
+ScavTrap::ScavTrap(const ScavTrap &copy) : ClapTrap(copy)
 {
 	_name = copy._name;
 	_health = copy._health;
@@ -35,8 +35,6 @@ ScavTrap::~ScavTrap()
 {
 	std::cout << "\e[0;31mDestructor called of ScavTrap\e[0m" << std::endl;
 }
-
-
 
 ScavTrap & ScavTrap::operator=(const ScavTrap &assign)
 {

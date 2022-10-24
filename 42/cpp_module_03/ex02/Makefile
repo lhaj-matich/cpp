@@ -1,8 +1,8 @@
-NAME=fixed
+NAME=ScavTrap
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = main.cpp Fixed.cpp
+SRC = ClapTrap.cpp ScavTrap.cpp FragTrap.cpp main.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)

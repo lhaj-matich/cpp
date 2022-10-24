@@ -12,7 +12,7 @@ class Fixed
         Fixed(); // Default constructor
         ~Fixed(); // Default deconstructor
         Fixed(const Fixed &other); // Copy constructor
-        Fixed & operator=(const Fixed &rhs);
+        Fixed & operator=(const Fixed &rhs); // Overload the copy constructor
 
         int getRawBits() const;
         void    setRawBits(int raw);

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Weapon.cpp                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/24 15:49:51 by ochoumou          #+#    #+#             */
+/*   Updated: 2022/10/24 15:49:52 by ochoumou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Weapon.hpp"
 
 std::string const & Weapon::getType()
@@ -18,7 +30,6 @@ Weapon::Weapon(int *type)
         return ;
     }
 }
-
 
 Weapon::Weapon (std::string type)
 {
