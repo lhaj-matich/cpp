@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 15:49:57 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/10/24 15:49:58 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/10/25 13:11:46 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ int main(int argc, char **argv)
         std::ofstream replaceFile;
 
         originalFile.open(fileName);
-        replaceFile.open(fileName.append(".replace"));
         if (originalFile.is_open())
         {
+            replaceFile.open(fileName.append(".replace"));
             while (getline(originalFile, line))
             {
                 line = replace_line(line, str1, str2);
