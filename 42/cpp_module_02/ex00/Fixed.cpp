@@ -11,9 +11,6 @@ Fixed::~Fixed()
     std::cout << "Destructor called" << std::endl;
 }
 
-//? Why i used a ref here:
-//? We use the call by ref here because if we don't we'll be creating a copy of the object and in this 
-//? function we should be defining how this object is supposed to be copied.
 Fixed::Fixed(Fixed const &other)
 {
     std::cout << "Copy constructor called" << std::endl;
