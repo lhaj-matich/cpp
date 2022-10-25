@@ -6,7 +6,7 @@
 #    By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/22 13:18:48 by ochoumou          #+#    #+#              #
-#    Updated: 2022/10/22 13:18:49 by ochoumou         ###   ########.fr        #
+#    Updated: 2022/10/25 11:26:57 by ochoumou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,4 +31,4 @@ clean:
 fclean: clean
 	rm -rf $(NAME)
 
-re: clean all
+re: fclean all
