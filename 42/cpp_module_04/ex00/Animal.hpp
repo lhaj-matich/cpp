@@ -15,7 +15,7 @@ class Animal
 		Animal(const Animal &copy);
 		
 		// Destructor
-		~Animal();
+		virtual ~Animal();
 		
 		// Copy assigment operator overload
 		Animal & operator=(const Animal &assign);
