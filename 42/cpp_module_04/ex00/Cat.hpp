@@ -18,8 +18,8 @@ class Cat : public Animal
 		Cat & operator=(const Cat &assign);
 		
 		// Member functions
-		virtual const std::string & getType() const;
-        virtual void    makeSound() const;
+		const std::string & getType() const;
+        void    makeSound() const;
 };
 
 #endif
