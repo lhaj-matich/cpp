@@ -5,7 +5,7 @@
 int main(void)
 {
     ScavTrap robot("Home");
-    ClapTrap *ptr;
+    // ClapTrap *ptr;
     ScavTrap sbridla(robot);
 
     return (0);
