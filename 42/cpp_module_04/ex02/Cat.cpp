@@ -25,6 +25,8 @@ Cat::~Cat()
 // Operators
 Cat & Cat::operator=(const Cat &assign)
 {
+	if (_cerv)
+		delete _cerv;
 	_type = assign.getType();
 	_cerv = new Brain(*assign._cerv);
 	return *this;

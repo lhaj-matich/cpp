@@ -25,6 +25,8 @@ Dog::~Dog()
 // Operators
 Dog & Dog::operator=(const Dog &assign)
 {
+	if (_cerv)
+		delete _cerv;
 	_type = assign.getType();
 	_cerv = new Brain(*assign._cerv);
 	return *this;
