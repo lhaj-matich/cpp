@@ -21,7 +21,7 @@ Form::Form(const Form &copy): _name(copy._name)
 	std::cout << "\e[0;33mCopy Constructor called of Form\e[0m" << std::endl;
 }
 
-Form::Form(std::string name, bool is_signed, int sign_grade, int exec_grade) : _name(name)
+Form::Form(std::string name, int sign_grade, int exec_grade) : _name(name)
 {
 	_sign_grade = sign_grade;
 	_exec_grade = exec_grade;
@@ -29,7 +29,7 @@ Form::Form(std::string name, bool is_signed, int sign_grade, int exec_grade) : _
 		throw Form::GradeTooLowExecption();
 	if (_exec_grade < 1 || _sign_grade < 1)
 		throw Form::GradeTooHighExecption();
-	_is_signed = is_signed;
+	_is_signed = false;
 	std::cout << "\e[0;33mFields Constructor called of Form\e[0m" << std::endl;
 }
 

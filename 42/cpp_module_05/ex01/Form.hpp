@@ -11,7 +11,7 @@ class Form
 		// Constructors
 		Form();
 		Form(const Form &copy);
-		Form(std::string name, bool is_signed, int sign_grade, int exec_grade);
+		Form(std::string name, int sign_grade, int exec_grade);
 		
 		// Destructor
 		~Form();
