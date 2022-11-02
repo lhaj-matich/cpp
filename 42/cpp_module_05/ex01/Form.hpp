@@ -32,7 +32,6 @@ class Form
 				const char *what() const throw();
 		};
 
-
 		// Member functions (Getters)
 		std::string getName() const;
 		bool getIs_signed() const;
@@ -40,7 +39,7 @@ class Form
 		int getExec_grade() const;
 
 		// Member functions (Bureaucrat)
-		void	beSigned(Bureaucrat);
+		void	beSigned(Bureaucrat &);
 	private:
 		const std::string _name;
 		bool _is_signed;
