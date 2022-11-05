@@ -1,38 +1,46 @@
-#ifndef BUREAUCRAT_HPP
-# define BUREAUCRAT_HPP
+#ifndef BUREAUCRAT_H_
+#define BUREAUCRAT_H_
 
-# include <iostream>
-# include "Form.hpp"
+#include <iostream>
+#include "Form.hpp"
 
-class Bureaucrat
+class Bureaucrat 
 {
-	private:
-		std::string const name;
-		int grade;
-	public:
-		Bureaucrat();
-		Bureaucrat (std::string const &name, int grade);
-		Bureaucrat(const Bureaucrat &copy);
-		~Bureaucrat();
-		Bureaucrat & operator=(const Bureaucrat &assign);
+    public:
+        // Constructors and destructor
+        Bureaucrat();
+        Bureaucrat(std::string, int);
+        Bureaucrat(Bureaucrat const & copy);
+        ~Bureaucrat();
 
-        class GradeTooHighException: public std::exception 
+        // Overload the copy assigment operator
+        Bureaucrat & operator=(Bureaucrat const & assign);
+
+        // Exceptions
+        class GradeTooLowException : public std::exception
         {
-            const char* what() const throw();
-        };
-        class GradeTooLowException: public std::exception 
-        {
-            const char* what(void) const throw();
+            public:
+                const char *what() const throw();
         };
 
-		std::string getName (void) const;
-		int getGrade (void) const;
-		void incrementGrade (void);
-		void decrementGrade (void);
+        class GradeTooHighException: public std::exception
+        {
+            public:
+                const char *what() const throw();
+        };
+        // Member functions
+        void    incrementGrade(void);
+        void    decrementGrade(void);
+        std::string getName(void);
+        int getGrade(void);
 
-        void    Bureaucrat::signForm(Form &form);
+        int     getGrade(void);
+        void    signForm(Form &from);
+    private:
+        const std::string _name;
+        int _grade;
 };
 
-std::ostream& operator << (std::ostream &o, Bureaucrat const &obj);
+std::ostream & operator<<(std::ostream & output, Bureaucrat & input);
 
 #endif

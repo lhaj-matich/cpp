@@ -1,8 +1,8 @@
-NAME=animal_abstract
+NAME=bureaucrat
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = main.cpp Animal.cpp Cat.cpp Dog.cpp Brain.cpp
+SRC = main.cpp Bureaucrat.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)

@@ -4,8 +4,8 @@
 Form::Form(): _name("")
 {
 	_is_signed = false;
-	_sign_grade = 0;
-	_exec_grade = 0;
+	_sign_grade = 1;
+	_exec_grade = 1;
 	std::cout << "\e[0;33mDefault Constructor called of Form\e[0m" << std::endl;
 }
 
@@ -14,14 +14,22 @@ Form::Form(const Form &copy): _name(copy._name)
 	_is_signed = copy.getIs_signed();
 	_sign_grade = copy.getSign_grade();
 	_exec_grade = copy.getExec_grade();
+	if (_exec_grade > 150 || _sign_grade > 150)
+		throw Form::GradeTooLowExecption();
+	if (_exec_grade < 1 || _sign_grade < 1)
+		throw Form::GradeTooHighExecption();
 	std::cout << "\e[0;33mCopy Constructor called of Form\e[0m" << std::endl;
 }
 
-Form::Form(std::string name, bool is_signed, int sign_grade, int exec_grade) : _name(name)
+Form::Form(std::string name, int sign_grade, int exec_grade) : _name(name)
 {
-	_is_signed = is_signed;
 	_sign_grade = sign_grade;
 	_exec_grade = exec_grade;
+	if (_exec_grade > 150 || _sign_grade > 150)
+		throw Form::GradeTooLowExecption();
+	if (_exec_grade < 1 || _sign_grade < 1)
+		throw Form::GradeTooHighExecption();
+	_is_signed = false;
 	std::cout << "\e[0;33mFields Constructor called of Form\e[0m" << std::endl;
 }
 
@@ -36,9 +44,13 @@ Form::~Form()
 // Operators
 Form & Form::operator=(const Form &assign)
 {
-	_is_signed = assign.getIs_signed();
-	_sign_grade = assign.getSign_grade();
 	_exec_grade = assign.getExec_grade();
+	_sign_grade = assign.getSign_grade();
+	if (_exec_grade > 150 || _sign_grade > 150)
+		throw Form::GradeTooLowExecption();
+	if (_exec_grade < 1 || _sign_grade < 1)
+		throw Form::GradeTooHighExecption();
+	_is_signed = assign.getIs_signed();
 	return *this;
 }
 
@@ -74,7 +86,7 @@ int Form::getExec_grade() const
 
 // Member functions
 
-void	Form::beSigned(Bureaucrat bureaucrat)
+void	Form::beSigned(Bureaucrat & bureaucrat)
 {
 	if (bureaucrat.getGrade() > 150)
 		throw Form::GradeTooLowExecption();
