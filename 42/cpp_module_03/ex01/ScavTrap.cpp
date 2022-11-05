@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ScavTrap.cpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/05 12:09:40 by ochoumou          #+#    #+#             */
+/*   Updated: 2022/11/05 12:09:41 by ochoumou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ScavTrap.hpp"
 
 // Constructors
@@ -12,7 +24,6 @@ ScavTrap::ScavTrap()
 
 ScavTrap::ScavTrap(std::string name): ClapTrap(name)
 {
-	// _name = name;
 	_health = 100;
 	_energy = 50;
 	_damage = 20;
@@ -22,10 +33,7 @@ ScavTrap::ScavTrap(std::string name): ClapTrap(name)
 
 ScavTrap::ScavTrap(const ScavTrap &copy) : ClapTrap(copy._name)
 {
-	_name = copy._name;
-	_health = copy._health;
-	_energy = copy._energy;
-	_damage = copy._damage;
+	*this = copy;
 	std::cout << "\e[0;33mCopy Constructor called of ScavTrap\e[0m" << std::endl;
 }
 
@@ -35,8 +43,6 @@ ScavTrap::~ScavTrap()
 {
 	std::cout << "\e[0;31mDestructor called of ScavTrap\e[0m" << std::endl;
 }
-
-
 
 ScavTrap & ScavTrap::operator=(const ScavTrap &assign)
 {
