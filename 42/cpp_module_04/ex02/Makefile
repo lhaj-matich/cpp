@@ -1,4 +1,4 @@
-NAME=animal_abstract
+NAME=animal
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
 

@@ -7,7 +7,7 @@ Cat::Cat()
 	std::cout << "\e[0;33mDefault Constructor called of Cat\e[0m" << std::endl;
 }
 
-Cat::Cat(const Cat &copy): Animal(copy)
+Cat::Cat(const Cat &copy)
 {
 	_type = copy.getType();
 	std::cout << "\e[0;33mCopy Constructor called of Cat\e[0m" << std::endl;

@@ -19,7 +19,6 @@ Animal::Animal(std::string type)
 	std::cout << "\e[0;33mFields Constructor called of Animal\e[0m" << std::endl;
 }
 
-
 // Destructor
 Animal::~Animal()
 {
@@ -33,7 +32,6 @@ Animal & Animal::operator=(const Animal &assign)
 	_type = assign.getType();
 	return *this;
 }
-
 
 // Member functions
 

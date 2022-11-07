@@ -2,27 +2,24 @@
 # define CAT_HPP
 
 # include <iostream>
-# include "Animal.hpp"
-# include "Brain.hpp"
+# include "WrongAnimal.hpp"
 
-class Cat : public Animal
+class WrongCat : public WrongAnimal
 {
 	public:
 		// Constructors
-		Cat();
-		Cat(const Cat &copy);
+		WrongCat();
+		WrongCat(const WrongCat &copy);
 		
 		// Destructor
-		virtual ~Cat();
+		~WrongCat();
 		
 		// Operators
-		Cat & operator=(const Cat &assign);
+		WrongCat & operator=(const WrongCat &assign);
 		
 		// Member functions
 		const std::string & getType() const;
         void    makeSound() const;
-	private:
-		Brain *_cerv;
 };
 
 #endif

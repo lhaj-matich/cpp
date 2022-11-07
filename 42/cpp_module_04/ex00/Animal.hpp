@@ -22,7 +22,7 @@ class Animal
 		
 		// Member functions
 
-		virtual const std::string & getType() const;
+		const std::string & getType() const;
 		virtual void makeSound() const;
 		
 	protected:
