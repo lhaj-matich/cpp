@@ -86,7 +86,7 @@ int Form::getExec_grade() const
 
 // Member functions
 
-void	Form::beSigned(Bureaucrat & bureaucrat)
+void	Form::beSigned(Bureaucrat const &bureaucrat)
 {
 	if (bureaucrat.getGrade() > 150)
 		throw Form::GradeTooLowExecption();

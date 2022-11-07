@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 11:04:58 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/11/07 13:02:54 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/11/07 11:59:06 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,12 @@ class Form
 		};
 
 		class GradeTooLowExecption: public std::exception 
+		{
+			public:
+				const char *what() const throw();
+		};
+
+		class FormNotSignedException: public std::exception 
 		{
 			public:
 				const char *what() const throw();

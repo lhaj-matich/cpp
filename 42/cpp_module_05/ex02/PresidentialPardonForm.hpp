@@ -1,37 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
+/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/07 11:04:42 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/11/07 11:41:31 by ochoumou         ###   ########.fr       */
+/*   Created: 2022/11/07 11:05:09 by ochoumou          #+#    #+#             */
+/*   Updated: 2022/11/07 11:39:20 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ROBOTOMYREQUESTFORM_HPP
-# define ROBOTOMYREQUESTFORM_HPP
+#ifndef PRESIDENTIALPARDONFORM_HPP
+# define PRESIDENTIALPARDONFORM_HPP
 
 # include <iostream>
 # include "Form.hpp"
 
-class RobotomyRequestForm : public Form
+class PresidentialPardonForm : public Form
 {
 	public:
 		// Constructors
-		RobotomyRequestForm();
-		RobotomyRequestForm(const RobotomyRequestForm &copy);
+		PresidentialPardonForm();
+		PresidentialPardonForm(const PresidentialPardonForm &copy);
+		PresidentialPardonForm(std::string target);
 		
 		// Destructor
-		~RobotomyRequestForm();
+		~PresidentialPardonForm();
 		
 		// Operators
-		RobotomyRequestForm & operator=(const RobotomyRequestForm &assign);
+		PresidentialPardonForm & operator=(const PresidentialPardonForm &assign);
 		
-		void	procedure( void ) const;
+		// Member function
+
+		void	procedure() const;
+		
 	private:
 		std::string _target;
+		
 };
 
 #endif

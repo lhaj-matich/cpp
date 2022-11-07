@@ -39,7 +39,7 @@ class Form
 		int getExec_grade() const;
 
 		// Member functions (Bureaucrat)
-		void	beSigned(Bureaucrat &);
+		void	beSigned(Bureaucrat const &);
 	private:
 		const std::string _name;
 		bool _is_signed;

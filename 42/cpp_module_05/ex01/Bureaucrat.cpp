@@ -38,7 +38,7 @@ void    Bureaucrat::decrementGrade()
 
 // Get private variables
 
-int Bureaucrat::getGrade()
+int Bureaucrat::getGrade() const
 {
     return (this->_grade);
 }
@@ -70,8 +70,13 @@ std::ostream & operator<<(std::ostream & output, Bureaucrat & input)
 
 void    Bureaucrat::signForm(Form &form) 
 {
-    if (form.getIs_signed())
+    try 
+    {
+        form.beSigned(*this);
         std::cout << this->_name << " signed " << form.getName() << std::endl;
-    else
-        std::cout << this->_name << " couldn't sign " << form.getName() << " because grade is too low" << std::endl;
+    }
+    catch(std::exception &e)
+    {
+        std::cout << this->_name << " couldn't sign " << form.getName() << " because " << e.what() << std::endl;
+    }
 }

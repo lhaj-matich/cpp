@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 11:04:55 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/11/07 13:02:46 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/11/07 12:48:43 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,11 @@ const char * Form::GradeTooLowExecption::what() const throw()
 	return ("GradeTooLowException");
 }
 
+const char * Form::FormNotSignedException::what() const throw()
+{
+	return ("FormNotSignedException");
+}
+
 // Member functions to get the values
 std::string Form::getName() const
 {
@@ -113,16 +118,13 @@ void	Form::beSigned(Bureaucrat const & bureaucrat)
 
 void	Form::execute(Bureaucrat const & executor) const 
 {
-	if (this->_is_signed)
-	{	
-		if (executor.getGrade() > 150)
-			throw Form::GradeTooLowExecption();
-		if (executor.getGrade() < 1)
-			throw Form::GradeTooHighExecption();
-		this->procedure();
-	}
-	else
-		std::cout << "Could not execute: form is not signed" << std::endl;
+	if (!this->_is_signed)
+		throw Form::FormNotSignedException();
+	if (executor.getGrade() > 150)
+		throw Form::GradeTooLowExecption();
+	if (executor.getGrade() < 1)
+		throw Form::GradeTooHighExecption();
+	this->procedure();
 }
 
 std::ostream &operator<<(std::ostream &output, const Form & input)

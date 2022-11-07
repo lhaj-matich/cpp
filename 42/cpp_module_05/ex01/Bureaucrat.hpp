@@ -32,7 +32,7 @@ class Bureaucrat
         void    incrementGrade(void);
         void    decrementGrade(void);
         std::string getName(void);
-        int getGrade(void);
+        int getGrade(void) const;
 
         int     getGrade(void);
         void    signForm(Form &from);
