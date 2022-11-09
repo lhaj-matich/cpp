@@ -8,10 +8,10 @@ Dog::Dog()
 	std::cout << "\e[0;33mDefault Constructor called of Dog\e[0m" << std::endl;
 }
 
-Dog::Dog(const Dog &copy): Animal(copy)
+Dog::Dog(const Dog &copy)
 {
 	_type = copy.getType();
-	_cerv = copy._cerv;
+	_cerv = new Brain();
 	std::cout << "\e[0;33mCopy Constructor called of Dog\e[0m" << std::endl;
 }
 
@@ -25,6 +25,7 @@ Dog::~Dog()
 // Operators
 Dog & Dog::operator=(const Dog &assign)
 {
+	std::cout << "\e[0;31mCopy assign operator overload of Dog\e[0m" << std::endl;
 	if (_cerv)
 		delete _cerv;
 	_type = assign.getType();

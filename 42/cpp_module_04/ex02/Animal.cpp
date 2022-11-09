@@ -30,6 +30,7 @@ Animal::~Animal()
 // Operators
 Animal & Animal::operator=(const Animal &assign)
 {
+	std::cout << "\e[0;31mCopy assign operator overload of Animal\e[0m" << std::endl;
 	_type = assign.getType();
 	return *this;
 }

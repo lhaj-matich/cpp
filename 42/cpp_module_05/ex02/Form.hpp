@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 11:04:58 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/11/07 13:02:54 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/11/09 12:55:06 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ class Form
 		void	execute(Bureaucrat const & executor) const;
 		virtual void	procedure() const = 0;
 	private:
-		const std::string _name;
+		const	std::string _name;
+		const	int _sign_grade;
+		const	int _exec_grade;
 		bool _is_signed;
-		int _sign_grade;
-		int _exec_grade;
 };
 
 std::ostream operator<<(std::ostream output, const Form & input);

@@ -5,6 +5,8 @@
 # include <exception>
 # include "Bureaucrat.hpp"
 
+class Bureaucrat;
+
 class Form
 {
 	public:
@@ -41,10 +43,10 @@ class Form
 		// Member functions (Bureaucrat)
 		void	beSigned(Bureaucrat const &);
 	private:
-		const std::string _name;
-		bool _is_signed;
-		int _sign_grade;
-		int _exec_grade;
+		const	std::string _name;
+		const	int _sign_grade;
+		const	int _exec_grade;
+		bool	_is_signed;
 };
 
 std::ostream operator<<(std::ostream output, const Form & input);

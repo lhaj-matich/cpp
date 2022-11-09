@@ -1,19 +1,15 @@
 #include "Form.hpp"
 
 // Constructors
-Form::Form(): _name("")
+Form::Form(): _name(""), _sign_grade(1) , _exec_grade(1)
 {
 	_is_signed = false;
-	_sign_grade = 1;
-	_exec_grade = 1;
 	std::cout << "\e[0;33mDefault Constructor called of Form\e[0m" << std::endl;
 }
 
-Form::Form(const Form &copy): _name(copy._name)
+Form::Form(const Form &copy): _name(copy._name), _sign_grade(copy._sign_grade) , _exec_grade(copy._exec_grade)
 {
 	_is_signed = copy.getIs_signed();
-	_sign_grade = copy.getSign_grade();
-	_exec_grade = copy.getExec_grade();
 	if (_exec_grade > 150 || _sign_grade > 150)
 		throw Form::GradeTooLowExecption();
 	if (_exec_grade < 1 || _sign_grade < 1)
@@ -21,10 +17,8 @@ Form::Form(const Form &copy): _name(copy._name)
 	std::cout << "\e[0;33mCopy Constructor called of Form\e[0m" << std::endl;
 }
 
-Form::Form(std::string name, int sign_grade, int exec_grade) : _name(name)
+Form::Form(std::string name, int sign_grade, int exec_grade) : _name(name), _sign_grade(sign_grade) , _exec_grade(exec_grade)
 {
-	_sign_grade = sign_grade;
-	_exec_grade = exec_grade;
 	if (_exec_grade > 150 || _sign_grade > 150)
 		throw Form::GradeTooLowExecption();
 	if (_exec_grade < 1 || _sign_grade < 1)
@@ -44,12 +38,6 @@ Form::~Form()
 // Operators
 Form & Form::operator=(const Form &assign)
 {
-	_exec_grade = assign.getExec_grade();
-	_sign_grade = assign.getSign_grade();
-	if (_exec_grade > 150 || _sign_grade > 150)
-		throw Form::GradeTooLowExecption();
-	if (_exec_grade < 1 || _sign_grade < 1)
-		throw Form::GradeTooHighExecption();
 	_is_signed = assign.getIs_signed();
 	return *this;
 }

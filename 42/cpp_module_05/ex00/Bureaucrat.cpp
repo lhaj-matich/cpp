@@ -20,6 +20,14 @@ Bureaucrat::~Bureaucrat()
     std::cout << "Destructor of bureaucrat called." << std::endl;
 }
 
+// Copy assignement operator overload
+
+Bureaucrat & Bureaucrat::operator=(Bureaucrat const & assign)
+{
+    this->_grade = assign._grade;
+    return (*this);
+}
+
 // Bureaucrat member functions.
 
 void    Bureaucrat::incrementGrade()

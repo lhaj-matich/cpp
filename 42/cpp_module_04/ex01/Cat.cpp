@@ -26,13 +26,13 @@ Cat::~Cat()
 // Operators
 Cat & Cat::operator=(const Cat &assign)
 {
+	std::cout << "\e[0;31mCopy assign operator overload of Cat\e[0m" << std::endl;
 	if (_cerv)
 		delete _cerv;
 	_type = assign.getType();
 	_cerv = new Brain(*assign._cerv);
 	return *this;
 }
-
 
 // Member function
 const std::string & Cat::getType() const

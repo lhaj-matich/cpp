@@ -4,6 +4,8 @@
 #include <iostream>
 #include "Form.hpp"
 
+class Form;
+
 class Bureaucrat 
 {
     public:
@@ -34,7 +36,6 @@ class Bureaucrat
         std::string getName(void);
         int getGrade(void) const;
 
-        int     getGrade(void);
         void    signForm(Form &from);
     private:
         const std::string _name;

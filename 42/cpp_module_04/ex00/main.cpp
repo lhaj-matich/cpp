@@ -1,10 +1,13 @@
 #include <iostream>
 #include "Animal.hpp"
+#include "WrongAnimal.hpp"
+#include "WrongCat.hpp"
 #include "Cat.hpp"
 #include "Dog.hpp"
 
 int main()
 {
+    std::cout << "Dynamic binding." << std::endl;
     {
         const Animal* meta = new Animal();
         const Animal* j = new Dog();
@@ -18,6 +21,13 @@ int main()
         delete i;
         delete j;
         delete meta;
+    }
+    std::cout << "Static binding." << std::endl;
+    {
+        WrongAnimal* meta = new WrongAnimal();
+        WrongAnimal* j = new WrongCat();
+        meta->makeSound();
+        j->makeSound();
     }
     return 0;
 }

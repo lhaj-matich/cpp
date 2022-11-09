@@ -17,11 +17,7 @@ int main(void)
             bureaucat.decrementGrade();
             std::cout << bureaucat << std::endl;
         }
-        catch(Bureaucrat::GradeTooHighException &e)
-        {
-            std::cout << e.what() << std::endl;
-        }
-        catch(Bureaucrat::GradeTooLowException &e)
+        catch(std::exception &e)
         {
             std::cout << e.what() << std::endl;
         }
@@ -41,13 +37,9 @@ int main(void)
             bureaucat.decrementGrade();
             std::cout << bureaucat << std::endl;
         }
-            catch(Bureaucrat::GradeTooHighException &e)
-            {
-                std::cout << e.what() << std::endl;
-            }
-            catch(Bureaucrat::GradeTooLowException &e)
-            {
-                std::cout << e.what() << std::endl;
-            }
+        catch(std::exception &e)
+        {
+            std::cout << e.what() << std::endl;
         }
+    }
 }

@@ -6,26 +6,22 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 11:04:55 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/11/07 13:02:46 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/11/09 12:56:39 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 
 // Constructors
-Form::Form(): _name("")
+Form::Form(): _name(""), _sign_grade(1) , _exec_grade(1)
 {
 	_is_signed = false;
-	_sign_grade = 1;
-	_exec_grade = 1;
 	std::cout << "\e[0;33mDefault Constructor called of Form\e[0m" << std::endl;
 }
 
-Form::Form(const Form &copy): _name(copy._name)
+Form::Form(const Form &copy): _name(copy._name), _sign_grade(copy._sign_grade) , _exec_grade(copy._exec_grade)
 {
 	_is_signed = copy.getIs_signed();
-	_sign_grade = copy.getSign_grade();
-	_exec_grade = copy.getExec_grade();
 	if (_exec_grade > 150 || _sign_grade > 150)
 		throw Form::GradeTooLowExecption();
 	if (_exec_grade < 1 || _sign_grade < 1)
@@ -33,10 +29,8 @@ Form::Form(const Form &copy): _name(copy._name)
 	std::cout << "\e[0;33mCopy Constructor called of Form\e[0m" << std::endl;
 }
 
-Form::Form(std::string name, int sign_grade, int exec_grade) : _name(name)
+Form::Form(std::string name, int sign_grade, int exec_grade) : _name(name), _sign_grade(sign_grade) , _exec_grade(exec_grade)
 {
-	_sign_grade = sign_grade;
-	_exec_grade = exec_grade;
 	if (_exec_grade > 150 || _sign_grade > 150)
 		throw Form::GradeTooLowExecption();
 	if (_exec_grade < 1 || _sign_grade < 1)
@@ -54,12 +48,6 @@ Form::~Form()
 // Operators
 Form & Form::operator=(const Form &assign)
 {
-	_exec_grade = assign.getExec_grade();
-	_sign_grade = assign.getSign_grade();
-	if (_exec_grade > 150 || _sign_grade > 150)
-		throw Form::GradeTooLowExecption();
-	if (_exec_grade < 1 || _sign_grade < 1)
-		throw Form::GradeTooHighExecption();
 	_is_signed = assign.getIs_signed();
 	return *this;
 }
@@ -96,16 +84,8 @@ int Form::getExec_grade() const
 
 // Member functions
 
-// void	Form::procedure() const
-// {
-// 	std::cout << "This is the procedure function." << std::endl;
-// }
-
 void	Form::beSigned(Bureaucrat const & bureaucrat)
 {
-	// std::cout << "Bureaucrat grade: " << bureaucrat.getGrade() << std::endl;
-	// std::cout << "From grade exec: " << this->_exec_grade << std::endl;
-	// std::cout << "From grade sign: " << this->_sign_grade << std::endl;
 	if (bureaucrat.getGrade() > this->_sign_grade)
 		throw Form::GradeTooLowExecption();
 	this->_is_signed = true;

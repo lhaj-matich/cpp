@@ -2,12 +2,12 @@
 
 Bureaucrat::Bureaucrat() : _name(""), _grade(150)
 {
-    std::cout << "Default constructor of bureaucrat called." << std::endl;
+    std::cout << "\e[0;33Default constructor of bureaucrat called." << std::endl;
 }
 
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 {
-    std::cout << "Field constructor of bureaucrat called." << std::endl;
+    std::cout << "\e[0;33Field constructor of bureaucrat called." << std::endl;
     if (grade < 1)
         throw Bureaucrat::GradeTooHighException();
     else if (grade > 150)

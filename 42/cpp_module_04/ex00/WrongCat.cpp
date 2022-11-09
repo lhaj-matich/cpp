@@ -26,7 +26,6 @@ WrongCat & WrongCat::operator=(const WrongCat &assign)
 	return *this;
 }
 
-
 const std::string & WrongCat::getType() const
 {
 	return _type;

@@ -1,5 +1,5 @@
-#ifndef CAT_HPP
-# define CAT_HPP
+# ifndef CAT_HPP_
+# define CAT_HPP_
 
 # include <iostream>
 # include "Animal.hpp"
@@ -9,6 +9,7 @@ class Cat : public Animal
 	public:
 		// Constructors
 		Cat();
+		Cat(std::string type);
 		Cat(const Cat &copy);
 		
 		// Destructor

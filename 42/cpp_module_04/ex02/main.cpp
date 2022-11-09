@@ -6,10 +6,7 @@
 int main(void)
 {
     Animal *group[8];
-    Cat cat;
-    Cat cat2(cat);
-    Dog dog;
-    Dog dog2(dog);
+    // Animal lion;
 
     for (int i = 0; i <= 8; i++)
     {

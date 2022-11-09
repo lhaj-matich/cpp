@@ -1,7 +1,12 @@
 #include <iostream>
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int main(void)
 {
-   // need to create a main for this exercise.
+   Bureaucrat chrif("Chrif", 75);
+   Form Sokna("Chahada sokna", 80, 90);
+
+   chrif.signForm(Sokna);
+   return (0);
 }

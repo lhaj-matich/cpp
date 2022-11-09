@@ -41,4 +41,3 @@ void	WrongAnimal::makeSound() const
 {
 	std::cout << "I don't have a sound yet" << std::endl;
 }
-

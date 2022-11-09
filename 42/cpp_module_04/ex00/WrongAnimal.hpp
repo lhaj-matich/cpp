@@ -1,5 +1,5 @@
-#ifndef WRONGANIMAL_HPP
-# define WRONGANIMAL_HPP
+#ifndef WRONGANIMAL_HPP_
+# define WRONGANIMAL_HPP_
 
 # include <iostream>
 # include <string>

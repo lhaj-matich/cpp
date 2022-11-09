@@ -23,6 +23,7 @@ Brain::~Brain()
 // Overload the copy assign operator
 Brain & Brain::operator=(const Brain &assign)
 {
+	std::cout << "\e[0;31mCopy assign operator overload of Brain\e[0m" << std::endl;
 	std::string *ideastable = assign.getIdeas();
 	for (int i = 0; i < 100; i++)
 		this->_ideas[i] = ideastable[i];
