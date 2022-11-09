@@ -6,7 +6,7 @@
 #    By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/07 11:05:04 by ochoumou          #+#    #+#              #
-#    Updated: 2022/11/07 12:42:53 by ochoumou         ###   ########.fr        #
+#    Updated: 2022/11/09 13:38:18 by ochoumou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRC = main.cpp Bureaucrat.cpp Form.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberCreationForm.cpp
+HEADER = 
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)

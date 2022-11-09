@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 11:04:55 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/11/09 13:02:04 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/11/09 13:34:40 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ Form & Form::operator=(const Form &assign)
 }
 
 // Exceptions
-
 const char * Form::GradeTooHighExecption::what() const throw() 
 {
 	return ("GradeTooHighException");

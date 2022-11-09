@@ -55,6 +55,7 @@ const char * Form::GradeTooLowExecption::what() const throw()
 }
 
 // Member functions to get the values
+
 std::string Form::getName() const
 {
 	return _name;
@@ -76,7 +77,7 @@ int Form::getExec_grade() const
 
 void	Form::beSigned(Bureaucrat const &bureaucrat)
 {
-	if (bureaucrat.getGrade() > 150)
+	if (bureaucrat.getGrade() > this->getSign_grade())
 		throw Form::GradeTooLowExecption();
 	this->_is_signed = true;
 }

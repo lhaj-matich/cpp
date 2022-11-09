@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 11:04:50 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/11/07 12:03:45 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/11/09 13:26:17 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
     else if (grade > 150)
         throw Bureaucrat::GradeTooLowException();
     this->_grade = grade;
+}
+
+Bureaucrat & Bureaucrat::operator=(Bureaucrat const & assign)
+{
+    this->_grade = assign._grade;
+    return (*this);
 }
 
 Bureaucrat::~Bureaucrat()

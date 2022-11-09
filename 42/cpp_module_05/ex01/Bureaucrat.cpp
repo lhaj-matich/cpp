@@ -2,12 +2,12 @@
 
 Bureaucrat::Bureaucrat() : _name(""), _grade(150)
 {
-    std::cout << "\e[0;33Default constructor of bureaucrat called." << std::endl;
+    std::cout << "\e[0;33mDefault constructor Bureaucrat called.\e[0m" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 {
-    std::cout << "\e[0;33Field constructor of bureaucrat called." << std::endl;
+    std::cout << "\e[0;33mFields constructor Bureaucrat called.\e[0m" << std::endl;
     if (grade < 1)
         throw Bureaucrat::GradeTooHighException();
     else if (grade > 150)
@@ -17,7 +17,13 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 
 Bureaucrat::~Bureaucrat()
 {
-    std::cout << "Destructor of bureaucrat called." << std::endl;
+    std::cout << "\e[0;33mDestructor Bureaucrat called.\e[0m" << std::endl;
+}
+
+Bureaucrat & Bureaucrat::operator=(Bureaucrat const & assign)
+{
+    this->_grade = assign._grade;
+    return (*this);
 }
 
 // Bureaucrat member functions.

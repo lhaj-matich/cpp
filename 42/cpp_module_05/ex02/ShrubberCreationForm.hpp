@@ -14,7 +14,7 @@ class ShrubberCreationForm: public Form
 		ShrubberCreationForm(const ShrubberCreationForm &copy);
 		
 		// Destructor
-		~ShrubberCreationForm();
+		virtual ~ShrubberCreationForm();
 		
 		// Copy assignement operator overload
 		ShrubberCreationForm & operator=(const ShrubberCreationForm &assign);
