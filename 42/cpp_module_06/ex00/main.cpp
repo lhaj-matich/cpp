@@ -8,34 +8,33 @@
 
 bool check_nan(std::string &literal)
 {
-    if (literal.compare("nan") || literal.compare("nanf"))
+    if (!literal.compare("nan") || !literal.compare("nanf"))
         return (true);
     return (false);
 }
 
 bool check_numbers_extrem(std::string &literal)
 {
-    if (literal.compare("+inff") || literal.compare("inff") || literal.compare("+inf") || literal.compare("inf") || literal.compare("-inf") || literal.compare("-inff"))
+    if (!literal.compare("+inff") || !literal.compare("inff") || !literal.compare("+inf") || !literal.compare("inf") || !literal.compare("-inf") || !literal.compare("-inff"))
         return (true);
     return (false);
 }
 
-// void    handle_char(std::string &literal)
-// {
-//     int ascii = stoi(literal);
+void    display_nan_output()
+{
+    std::cout << "char: impossible" << std::endl;
+    std::cout << "int: impossible" << std::endl;
+    std::cout << "float: nanf" << std::endl;
+    std::cout << "double: nan" << std::endl;
+}
 
-//     if (check_nan(literal) || check_numbers_extrem(literal))
-//         std::cout << "impossible" << std::endl;
-//     if (ascii > 0 && ascii < 255)
-//         std::cout << "impossible" << std::endl;
-//     else if (ascii < 32 && ascii > 126)
-//         std::cout << "not displayable" << std::endl;  
-//     else
-//     {
-//         char c = static_cast<char>(ascii);
-//         std::cout << c << std::endl;
-//     }
-// }
+void    display_inf_output()
+{
+    std::cout << "char: impossible" << std::endl;
+    std::cout << "int: impossible" << std::endl;
+    std::cout << "float: inff" << std::endl;
+    std::cout << "double: inf" << std::endl;
+}
 
 long int string_to_i( std::string & s ) {
     long int i;
@@ -71,14 +70,6 @@ int count_occurence(std::string &s, char c)
         i++;
     }
     return (count);
-}
-
-void    print_result()
-{
-    std::cout << "char: " << std::endl;
-    std::cout << "int: " << std::endl;
-    std::cout << "float: " << std::endl;
-    std::cout << "double: " << std::endl;
 }
 
 bool error_number()
@@ -126,14 +117,20 @@ int get_literal_type(std::string &s)
     return (0);
 }
 
+int get_precesion(std::string &s)
+{
+    int cut = s.find('.', 0);
+    return (s.length() - (cut + 1));
+}  
+
 void    print_result(int type, std::string &s)
 {
-    int precision = 1;
-    double d = 0.0; 
-    long int i = 0;
-    long int check = 0;
-    float f = 0.0;
-    char c = '\0';
+    double      d = 0.0; 
+    float       f = 0.0;
+    char        c = 0;
+    long int    i = 0;
+    long int    check = 0;
+    int         precision = get_precesion(s);
     if (type == CHAR)
     {
         c = s[0];
@@ -190,7 +187,12 @@ int main(int argc, char **argv)
     if (argc > 1)
     {
         literal = argv[1];
-        print_result(get_literal_type(literal), literal);
+        if (check_numbers_extrem(literal))
+            display_inf_output();
+        else if (check_nan(literal))
+            display_nan_output();
+        else
+            print_result(get_literal_type(literal), literal);
         return (0);
     }
     std::cout << "Invalid input" << std::endl;
