@@ -10,5 +10,7 @@ int stoi( std::string & s );
 double stod( std::string & s );
 float stof( std::string & s );
 char stoc( std::string & s );
+int float_exponent(float f);
+int float_mantissa(float f);
 
 #endif

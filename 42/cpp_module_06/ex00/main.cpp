@@ -2,62 +2,9 @@
 #include <sstream>
 #include <limits.h>
 #include <float.h>
+#include <stdint.h>
+#include <iomanip>
 #include "convertNumber.hpp"
-
-void    handle_char(std::string &literal)
-{
-    int ascii = stoi(literal);
-
-    if (check_nan(literal) || check_numbers_extrem(literal))
-        std::cout << "impossible" << std::endl;
-    if (ascii > 0 && ascii < 255)
-        std::cout << "impossible" << std::endl;
-    else if (ascii < 32 && ascii > 126)
-        std::cout << "not displayable" << std::endl;  
-    else
-    {
-        char c = static_cast<char>(ascii);
-        std::cout << c << std::endl;
-    }
-}
-
-
-
-void    print_result()
-{
-    std::cout << "char: " << std::endl;
-    std::cout << "int: " << std::endl;
-    std::cout << "float: " << std::endl;
-    std::cout << "double: " << std::endl;
-}
-
-bool check_int(std::string &number)
-{
-    return (number.find_first_not_of("+-012345679"));
-}
-
-bool check_float(std::string &number)
-{
-    return (number.find_first_not_of("+-012345679.f"));
-}
-
-bool check_double(std::string &number)
-{
-    return (number.find_first_not_of("+-012345679."));
-}
-
-int get_literal_type(std::string &s)
-{
-    if (s.length() == 1 && isalpha(s[0]))
-        return (CHAR);
-    else if (check_int(s))
-        return (INT);
-    else if (check_float(s))
-        return (FLOAT);
-    else if (check_double(s))
-        return (DOUBLE);
-    return (0);
-}
 
 bool check_nan(std::string &literal)
 {
@@ -73,13 +20,177 @@ bool check_numbers_extrem(std::string &literal)
     return (false);
 }
 
+// void    handle_char(std::string &literal)
+// {
+//     int ascii = stoi(literal);
+
+//     if (check_nan(literal) || check_numbers_extrem(literal))
+//         std::cout << "impossible" << std::endl;
+//     if (ascii > 0 && ascii < 255)
+//         std::cout << "impossible" << std::endl;
+//     else if (ascii < 32 && ascii > 126)
+//         std::cout << "not displayable" << std::endl;  
+//     else
+//     {
+//         char c = static_cast<char>(ascii);
+//         std::cout << c << std::endl;
+//     }
+// }
+
+long int string_to_i( std::string & s ) {
+    long int i;
+    std::istringstream(s) >> i;
+    return i;
+}
+
+double string_to_d(std::string & s)
+{
+    double d;
+    std::istringstream(s) >> d;
+    return d;
+}
+
+float string_to_f(std::string & s) 
+{
+    float f;
+    std::istringstream(s) >> f;
+    return f;
+}
+
+int count_occurence(std::string &s, char c)
+{
+    int i;
+    int count;
+
+    count = 0;
+    i = 0;
+    while (s[i])
+    {
+        if (s[i] == c)
+            count += 1;
+        i++;
+    }
+    return (count);
+}
+
+void    print_result()
+{
+    std::cout << "char: " << std::endl;
+    std::cout << "int: " << std::endl;
+    std::cout << "float: " << std::endl;
+    std::cout << "double: " << std::endl;
+}
+
+bool error_number()
+{
+    std::cout << "Error: invalid number." << std::endl;
+    return false;
+}
+
+void error_code()
+{
+    std::cout << "Error: invalid input." << std::endl;
+}
+
+bool check_int(std::string &number)
+{
+    if (count_occurence(number, '+') > 1 || count_occurence(number, '-') > 1)
+        return (error_number());
+    return (number.find_first_not_of("+-0123456789") == std::string::npos);
+}
+
+bool check_float(std::string &number)
+{
+    if (count_occurence(number, '+') > 1 || count_occurence(number, '-') > 1 || count_occurence(number, '.') > 1)
+        return (error_number());
+    return (number.find_first_not_of("+-0123456789.f") == std::string::npos);
+}
+
+bool check_double(std::string &number)
+{
+    if (count_occurence(number, '+') > 1 || count_occurence(number, '-') > 1 || count_occurence(number, '.') > 1)
+        return (error_number());
+    return (number.find_first_not_of("+-0123456789.") == std::string::npos);
+}
+
+int get_literal_type(std::string &s)
+{
+    if (s.length() == 1 && isalpha(s[0]))
+        return (CHAR);
+    else if (check_int(s))
+        return (INT);
+    else if (check_double(s))
+        return (DOUBLE);
+    else if (check_float(s))
+        return (FLOAT);
+    return (0);
+}
+
+void    print_result(int type, std::string &s)
+{
+    int precision = 1;
+    double d = 0.0; 
+    long int i = 0;
+    long int check = 0;
+    float f = 0.0;
+    char c = '\0';
+    if (type == CHAR)
+    {
+        c = s[0];
+        if (isprint(c))
+        {
+            d = static_cast<double>(c);
+            i = static_cast<int>(c);
+            f = static_cast<float>(c);
+        }
+    }
+    else if (type == INT)
+    {
+        i = string_to_i(s);
+        if (i > INT_MAX || i < INT_MIN)
+            return (error_code());
+        f = static_cast<float>(i);
+        d = static_cast<double>(i);
+        c = static_cast<char>(i);
+    }
+    else if (type == DOUBLE)
+    {
+        d = string_to_d(s);
+        check = string_to_i(s);
+        i = static_cast<int>(d);
+        f = static_cast<float>(d);
+        c = static_cast<char>(d);
+    }
+    else if (type == FLOAT)
+    {
+        s.pop_back();
+        f = string_to_f(s);
+        check = string_to_i(s);
+        i = static_cast<int>(f);
+        d = static_cast<float>(f);
+        c = static_cast<char>(f);
+    }
+    if (check > INT_MAX || check < INT_MIN)
+        std::cout << "Int: Impossible" << std::endl;
+    else
+        std::cout << "Int: " << i << std::endl;
+    std::cout << "Double: " <<  std::fixed  << std::setprecision(precision) << d << std::endl;
+    std::cout << "Float: " << std::fixed  << std::setprecision(precision) << f << "f" << std::endl; 
+    if (i > 255 || i < 0)
+        std::cout << "Char: Impossible" << std::endl;
+    else if (!isprint(c))
+        std::cout << "Char: Non displayable" << std::endl;
+    else
+        std::cout << "Char: " << c << std::endl; 
+}
+
 int main(int argc, char **argv)
 {
     std::string literal; 
     if (argc > 1)
     {
         literal = argv[1];
-        
+        print_result(get_literal_type(literal), literal);
         return (0);
     }
     std::cout << "Invalid input" << std::endl;
