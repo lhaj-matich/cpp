@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 11:04:58 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/11/09 13:00:40 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/11/11 19:00:58 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,6 @@ class Form
 		bool _is_signed;
 };
 
-std::ostream operator<<(std::ostream output, const Form & input);
+std::ostream & operator<<(std::ostream & output, const Form & input);
 
 #endif

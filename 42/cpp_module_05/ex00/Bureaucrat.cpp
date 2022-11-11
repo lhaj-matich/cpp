@@ -15,6 +15,11 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
     this->_grade = grade;
 }
 
+Bureaucrat::Bureaucrat(Bureaucrat const & copy) : _name(copy._name)
+{
+    this->_grade = copy._grade;
+}
+
 Bureaucrat::~Bureaucrat()
 {
     std::cout << "Destructor of bureaucrat called." << std::endl;

@@ -20,6 +20,11 @@ Bureaucrat::~Bureaucrat()
     std::cout << "\e[0;33mDestructor Bureaucrat called.\e[0m" << std::endl;
 }
 
+Bureaucrat::Bureaucrat(Bureaucrat const & copy) : _name(copy._name)
+{
+    this->_grade = copy._grade;
+}
+
 Bureaucrat & Bureaucrat::operator=(Bureaucrat const & assign)
 {
     this->_grade = assign._grade;
