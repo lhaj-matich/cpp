@@ -28,6 +28,11 @@ Intern & Intern::operator=(const Intern &assign)
 	return *this;
 }
 
+const char * Intern::InvalidFormException::what() const throw()
+{
+	return ("InvalidFormException");
+}
+
 Form * Intern::makeForm(std::string formName, std::string target)
 {
 	int id;
@@ -47,7 +52,7 @@ Form * Intern::makeForm(std::string formName, std::string target)
 			form = new ShrubberCreationForm(target);
 			break;
 		default:
-			std::cout << "Invalid form name." << std::endl;
+			throw Intern::InvalidFormException();
 	}
 	return form;
 }
