@@ -1,8 +1,8 @@
-NAME=whatever
+NAME=iter
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
-HEADER = whatever.hpp
+HEADER = iter.hpp
 SRC = main.cpp
 OBJ = $(SRC:.cpp=.o)
 
