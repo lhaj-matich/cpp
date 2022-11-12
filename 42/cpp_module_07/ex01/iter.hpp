@@ -4,13 +4,13 @@
 # include <iostream>
 
 template <typename T>
-void print(T var)
+void print(T const & var)
 {
     std::cout << var << std::endl;
 }
 
 template <typename T>
-void iter(T *table, int length, void (*fun)(T)) {
+void iter(T *table, int length, void (*fun)(T const &)) {
     int i;
 
     i = 0;
