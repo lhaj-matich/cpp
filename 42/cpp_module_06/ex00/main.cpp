@@ -77,12 +77,25 @@ void    print_result(int type, std::string &s)
         std::cout << "Char: " << c << std::endl; 
 }
 
+bool check_valid(std::string & literal)
+{
+    if (check_numbers_extrem(literal) || check_nan(literal))
+        return (true);
+    else if (literal.length() == 1 && isprint(literal[0]))
+        return (true);
+    else if (check_float(literal))
+        return (true);
+    return (false);
+}
+
 int main(int argc, char **argv)
 {
     std::string literal; 
     if (argc > 1)
     {
         literal = argv[1];
+        if (!check_valid(literal))
+            return (error_code(), 0);
         if (check_numbers_extrem(literal))
             display_inf_output();
         else if (check_nan(literal))
