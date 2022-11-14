@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <exception>
 
 template <class T>
 class Array {
@@ -18,7 +19,8 @@ class Array {
                 const char * what() const throw();
         };
         Array& operator=(const Array & table);
-        T   operator[](unsigned int index);
+        T  & operator[](unsigned int index);
+        const T & operator[](unsigned int index) const;
         unsigned int size ();
 };
 

@@ -50,7 +50,7 @@ bool check_int(std::string &number)
 
 bool check_float(std::string &number)
 {
-    if (count_occurence(number, '+') > 1 || count_occurence(number, '-') > 1 || count_occurence(number, '.') > 1)
+    if (count_occurence(number, '+') > 1 || count_occurence(number, '-') > 1 || count_occurence(number, '.') > 1 || count_occurence(number, 'f') > 1)
         return (error_number());
     return (number.find_first_not_of("+-0123456789.f") == std::string::npos);
 }

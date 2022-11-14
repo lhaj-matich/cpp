@@ -66,6 +66,7 @@
     "stack": "cpp",
     "filesystem": "cpp",
     "*.tcc": "cpp",
-    "clocale": "cpp"
+    "clocale": "cpp",
+    "*.tpp": "cpp"
   }
 }

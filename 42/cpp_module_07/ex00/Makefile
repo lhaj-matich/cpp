@@ -2,7 +2,7 @@ NAME=whatever
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
-HEADER = whatever.hpp
+HEADER = Whatever.hpp
 SRC = main.cpp
 OBJ = $(SRC:.cpp=.o)
 
