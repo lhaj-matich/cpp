@@ -67,6 +67,8 @@
     "filesystem": "cpp",
     "*.tcc": "cpp",
     "clocale": "cpp",
-    "*.tpp": "cpp"
+    "*.tpp": "cpp",
+    "numeric": "cpp",
+    "list": "cpp"
   }
 }

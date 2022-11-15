@@ -18,4 +18,5 @@ class Fixed
         void    setRawBits(int raw);
 };
 
+
 #endif
