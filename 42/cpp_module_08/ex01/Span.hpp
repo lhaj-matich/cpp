@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <vector>
+#include <list>
 #include <exception>
 #include <algorithm>
 #include <numeric>
@@ -30,7 +31,20 @@ class Span
         int     longestSpan( void );
         // Member functions
         void addNumber(unsigned int);
-        void addRange(int *);
+        
+        template <typename T>
+        void    addNumber(T begin, T end)
+        {
+            T iter = begin;
+            unsigned int size = std::distance(begin, end);
+            if (size <= this->spanSize())
+                throw SpanAlreadyFull();
+            while (iter != end)
+            {
+                this->_table.push_back(*iter);
+                iter++;
+            }
+        }
     private:
         unsigned int _size;
         unsigned int spanSize( void );

@@ -49,24 +49,6 @@ void    Span::addNumber(unsigned int value)
         this->_table.push_back(value);
 }
 
-void    Span::addRange(int *table)
-{
-    typedef std::vector<int>::iterator iter;
-
-    iter pos = this->_table.end();
-    iter start = this->_table.begin();
-    iter end = this->_table.end();
-    int i = 0;
-    while (start != end)
-    {
-        std::cout << table[i] << std::endl;
-        this->_table.insert(pos, table[i]);
-        pos++;
-        start++;
-        i++;
-    }
-}
-
 int     Span::longestSpan()
 {
     typedef std::vector<int>::iterator iter;
@@ -76,7 +58,7 @@ int     Span::longestSpan()
     iter end = this->_table.end();
     int adj_table[this->_size];
     std::adjacent_difference(begin, end, adj_table, difference);
-   return (*std::max_element(adj_table, adj_table + this->spanSize()));
+    return (*std::max_element(adj_table, adj_table + this->spanSize()));
     return (0);
 }
 
