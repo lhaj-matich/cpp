@@ -4,16 +4,38 @@
 #include <stack>
 #include <iostream>
 
-template <class T, class Container = std::deque<T>>
+template <class T, class Container = std::deque<T> >
 
-class MutantStack : public std::
+class MutantStack : public std::stack<T, Container>
 {
     public:
-        MutantStack();
-        ~MutantStack();
-        MutantStack(const & MutantStack);
-        MutantStack &operator=(const & MutantStack);
+        typedef typename std::stack<T>::container_type::iterator iterator;
 
-        
-        // Member functions
+        MutantStack()
+        {
+            std::cout << "Default constructor has been called." << std::endl;
+        }
+        ~MutantStack()
+        {
+            std::cout << "Default destructor has been called." << std::endl;
+        }
+        MutantStack(MutantStack const & copy)
+        {
+            *this = copy;
+        }
+        MutantStack &operator=(MutantStack const & obj)
+        {
+            this->c = obj.c;
+            return (*this);
+        }
+
+        iterator begin()
+        {
+            return (this->c.begin());
+        }
+
+        iterator end()
+        {
+            return (this->c.end());
+        }
 };
