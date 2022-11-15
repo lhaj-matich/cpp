@@ -1,17 +1,43 @@
 #include "MutantStack.hpp"
 
-int main(void)
+// int main(void)
+// {
+//     MutantStack<int> mystack;
+//     mystack.push(4);
+//     mystack.push(18);
+//     mystack.push(33);
+//     MutantStack<int>::iterator begin = mystack.begin();
+//     MutantStack<int>::iterator end = mystack.end();
+//     while (begin != end)
+//     {
+//         std::cout << "The value:" << *begin << std::endl; 
+//         begin++;
+//     }
+//     return (0);
+// }
+
+int main()
 {
-    MutantStack<int> mystack;
-    mystack.push(4);
-    mystack.push(18);
-    mystack.push(33);
-    MutantStack<int>::iterator begin = mystack.begin();
-    MutantStack<int>::iterator end = mystack.end();
-    while (begin != end)
+    MutantStack<int> mstack;
+    mstack.push(5);
+    mstack.push(17);
+    std::cout << mstack.top() << std::endl;
+    mstack.pop();
+    std::cout << mstack.size() << std::endl;
+    mstack.push(3);
+    mstack.push(5);
+    mstack.push(737);
+    //[...]
+    mstack.push(0);
+    MutantStack<int>::iterator it = mstack.begin();
+    MutantStack<int>::iterator ite = mstack.end();
+    ++it;
+    --it;
+    while (it != ite)
     {
-        std::cout << "The value:" << *begin << std::endl; 
-        begin++;
+    std::cout << *it << std::endl;
+    ++it;
     }
-    return (0);
+    std::stack<int> s(mstack);
+    return 0;
 }
