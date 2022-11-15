@@ -12,6 +12,6 @@ int easyfind(T value, int index)
     
     pos = std::find(begin, end, index);
     if  (pos != end)
-        return (*pos);
+        return (*pos);4
     return (-1);
 }
