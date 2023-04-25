@@ -6,6 +6,8 @@
 #include <fstream>
 #include <string>
 #include <sstream>
+#include <algorithm>
+#include <iomanip>
 
 class	BitcoinExchange
 {
@@ -13,14 +15,12 @@ class	BitcoinExchange
         std::map<std::string, float> _map;
         bool    check_date(std::string & date);
         bool    check_number(std::string & value);
+        void    loadDatabase();
     public:
         BitcoinExchange(void);
         BitcoinExchange(std::string filename);
         BitcoinExchange(BitcoinExchange const &src);
-        BitcoinExchange& operator=(BitcoinExchange const &rhs);
 
-        void	init_csv(void);
-        int 	data_base(char const *av);
         ~BitcoinExchange(void);
 };
 #endif
