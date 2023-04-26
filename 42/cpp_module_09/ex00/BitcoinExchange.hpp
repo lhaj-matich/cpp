@@ -18,11 +18,16 @@ class	BitcoinExchange
         bool    check_number(std::string & value);
         bool    check_table(std::string *table);
         void    loadDatabase();
+        float   getExchangeRate(std::string & date);
     public:
+        void    calculateRates(std::string filename);
         BitcoinExchange(void);
-        BitcoinExchange(std::string filename);
         BitcoinExchange(BitcoinExchange const &src);
 
         ~BitcoinExchange(void);
 };
+
+std::string *split(std::string line, char del);
+std::string stripSpaces(std::string &str);
+
 #endif

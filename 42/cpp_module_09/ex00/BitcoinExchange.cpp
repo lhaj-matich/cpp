@@ -2,36 +2,9 @@
 
 BitcoinExchange::BitcoinExchange()
 {
+    this->loadDatabase();
     std::cout << "Default consturctor" << std::endl;
 }
-
-BitcoinExchange::BitcoinExchange(std::string input)
-{
-    std::ifstream   file(input);
-    std::string     line;
-    std::string     date;
-    std::string     *result;
-    float           btc_amount;
-
-    // Load the exchange rate database.
-    this->loadDatabase();
-    if (file.is_open()) {
-        while (std::getline(file, line)) 
-        {
-            result = split(line, '|');
-            if (this->check_table(result) && this->check_date(result[0]), this->check_number(result[1]))
-            {
-                btc_amount = std::stof(result[1]);
-                date = result[0];
-            }
-            delete [] result;
-        }
-        file.close();
-    }
-    else 
-        std::cout << "Failed to open the database file!" << std::endl;
-}
-
 
 BitcoinExchange::~BitcoinExchange()
 {
@@ -64,6 +37,45 @@ void    BitcoinExchange::loadDatabase()
         std::cout << "Failed to open the database file!" << std::endl;
 }
 
+void    BitcoinExchange::calculateRates(std::string filename)
+{
+    std::ifstream   file(filename);
+    std::string     line;
+    std::string     date;
+    std::string     *result;
+    float           btc_amount;
+
+    if (file.is_open()) {
+        while (std::getline(file, line)) 
+        {
+            if (line.find(" | ") != std::string::npos)
+            {
+                result = split(line, '|');
+                if (this->check_table(result) && this->check_date(result[0]) && this->check_number(result[1]))
+                {
+                    btc_amount = std::stof(stripSpaces(result[1]));
+                    date = stripSpaces(result[0]);
+                    std::cout << date << " => " << btc_amount << " = " << btc_amount * this->getExchangeRate(date) << std::endl;
+                }
+                delete [] result;
+            }
+            else
+                std::cout << "Error: bad input => " << line << std::endl;
+        }
+        file.close();
+    }
+    else 
+        std::cout << "Failed to open the input file!" << std::endl;
+}
+
+std::string stripSpaces(std::string &str){
+    size_t start = str.find_first_not_of(" \t\n\r");
+    if (start == std::string::npos)
+        return std::string();
+    size_t end = str.find_last_not_of(" \t\n\r");
+    return str.substr(start, end - start + 1);
+}
+
 bool    BitcoinExchange::check_table(std::string *table)
 {
     if (!table || table[0].empty() || table[1].empty())
@@ -89,14 +101,33 @@ std::string *split(std::string line, char del)
     return (NULL);
 }
 
+float   BitcoinExchange::getExchangeRate(std::string & date)
+{
+    std::map<std::string, float>::iterator it;
+
+    it = this->_exchange_database.find(date);
+    if (it == this->_exchange_database.end())
+    {
+        it = this->_exchange_database.lower_bound(date);
+        this->getExchangeRate((std::string &)it->first);
+    }
+    else
+        return (it->second);
+}
+
 bool    BitcoinExchange::check_date(std::string &date)
 {
     std::tm dateStruct = {};
     std::istringstream ss(date.c_str());
 
+    if (date.find("date") != std::string::npos)
+        return (false);
     ss >> std::get_time(&dateStruct, "%Y-%m-%d");
     if (ss.fail())
+    {
+        std::cout << "Error: bad input => " << date << std::endl;
         return (false);
+    }
     return (true);
 }
 
@@ -104,8 +135,18 @@ bool    BitcoinExchange::check_number(std::string &input)
 {
     float   value;
 
-    value = std::stof(input);
-    if (value < 0 || value > 1000)
+    if (input.find("value") != std::string::npos)
         return (false);
+    try {
+        value = std::stof(input);
+        if (value < 0)
+            return (std::cout << "Error: not a positive number." << std::endl ,false);
+        else if (value > 1000)
+            return (std::cout << "Error: too large a number." << std::endl ,false);
+    } 
+    catch (std::exception& e)
+    {
+        return (std::cout << "Error: " << std::endl ,false);
+    }
     return (true);
 }
