@@ -27,7 +27,7 @@ void    BitcoinExchange::loadDatabase()
             {
                 exchange_rate = std::stof(result[1]);
                 date = result[0];
-                this->_exchange_database.insert(std::make_pair(date, exchange_rate));
+                this->_exchangeDatabase.insert(std::make_pair(date, exchange_rate));
             }
             delete [] result;
         }
@@ -105,10 +105,10 @@ float   BitcoinExchange::getExchangeRate(std::string & date)
 {
     std::map<std::string, float>::iterator it;
 
-    it = this->_exchange_database.find(date);
-    if (it == this->_exchange_database.end())
+    it = this->_exchangeDatabase.find(date);
+    if (it == this->_exchangeDatabase.end())
     {
-        it = this->_exchange_database.lower_bound(date);
+        it = this->_exchangeDatabase.lower_bound(date);
         this->getExchangeRate((std::string &)it->first);
     }
     else

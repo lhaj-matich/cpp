@@ -12,7 +12,7 @@
 class	BitcoinExchange
 {
     private:
-        std::map<std::string, float> _exchange_database;
+        std::map<std::string, float> _exchangeDatabase;
 
         bool    check_date(std::string & date);
         bool    check_number(std::string & value);
