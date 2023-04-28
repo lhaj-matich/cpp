@@ -35,4 +35,12 @@ class RPN
 
 };
 
+class RPNError: public std::runtime_error
+{
+    public:
+        RPNError(std::string const& msg):
+            std::runtime_error(msg)
+        {}
+};
+
 #endif
