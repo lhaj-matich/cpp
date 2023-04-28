@@ -31,32 +31,33 @@ void	RPN::calculateExpression(std::string expr)
 {
 	int		a;
 	int		b;
+	int		token;
 	size_t	i;
 
 	i = 0;
+	std::cout << expr << std::endl;
 	while (i < expr.length())
 	{
-		while (i < expr.length() && this->identifyToken(expr[i]) == SPACE)
-			i++;
-		if (this->identifyToken(expr[i]) == OPERAND)
+		token = this->identifyToken(expr[i]);
+		if (token == OPERAND && token != SPACE)
 			this->_dataStack.push(expr[i] - '0');
-		else if (this->identifyToken(expr[i]) == OPERATOR)
+		else if (token == OPERATOR && token != SPACE)
 		{
-			// Pop element a from the stack.
-			b = this->getOperand();
-			// Pop element b from the stack.
-			std::cout << "SIZE: " << this->_dataStack.size() << std::endl;
-			if (this->_dataStack.empty())
+			if (this->_dataStack.size() < 2)
 			{
-				std::cout << "Error Calculating the expression" << std::endl;
-				exit(1);
+				std::cout << "Error: Invalid Expression" << std::endl;
+				return ;
 			}
+			b = this->getOperand();
 			a = this->getOperand();
-			// Appliy the operator operation and pushing the result to the stack.
-			std::cout << b << " " << expr[i] << " " << a << " = " << this->calculateNumbers(a, b , expr[i]) << std::endl;
 			this->_dataStack.push(this->calculateNumbers(a, b , expr[i]));
 		}
-		i++;
+		else
+		{
+			std::cout << "Invalid Expression" << std::endl;
+			exit(1);
+		}
+		i += 1;
 	}
 	std::cout << this->_dataStack.top() << std::endl;
 	//! Should clear the stack here.
@@ -68,7 +69,22 @@ int	RPN::getOperand()
 	
 	el = this->_dataStack.top();
 	this->_dataStack.pop();
+
 	return (el);
+}
+
+int RPN::getResult()
+{
+	int result;
+	// throw invalid expression error if size large than 1
+	if (this->_dataStack.size() > 1)
+		return (0);
+	// Get the value of the top element
+	result = this->_dataStack.top();
+	// Clear the stack for future input
+	this->_dataStack.pop();
+	
+	return (result);
 }
 
 int	RPN::calculateNumbers(int a, int b, char operand)

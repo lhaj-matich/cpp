@@ -4,6 +4,7 @@
 # include <iostream>
 # include <string>
 # include <stack>
+# include <exception>
 
 #define OPERATOR 0
 #define OPERAND 1
@@ -28,6 +29,7 @@ class RPN
 		std::stack<int> _dataStack;
 
 		int		getOperand();
+		int		getResult();
 		int		identifyToken(char c);
 		int		calculateNumbers(int a, int b, char operand);
 
