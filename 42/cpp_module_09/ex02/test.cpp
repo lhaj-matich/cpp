@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <deque>
 
 
 // Split
@@ -31,15 +32,15 @@
 //     // This merger function must be using insertion sort.
 // }
 
-void    printVector(std::vector<int> input, std::string name);
-std::vector<int> insertionSort(std::vector<int> input);
-std::vector<int> mergeSort(std::vector<int> input);
+void    printVector(std::deque<int> input, std::string name);
+std::deque<int> insertionSort(std::deque<int> input);
+std::deque<int> mergeSort(std::deque<int> input);
 
-std::vector<int> merge(std::vector<int> leftArray, std::vector<int> rightArray)
+std::deque<int> merge(std::deque<int> leftArray, std::deque<int> rightArray)
 {
-    std::vector<int>::iterator i;
-    std::vector<int>::iterator j;
-    std::vector<int> result;
+    std::deque<int>::iterator i;
+    std::deque<int>::iterator j;
+    std::deque<int> result;
 
 
     i = leftArray.begin();
@@ -59,7 +60,7 @@ std::vector<int> merge(std::vector<int> leftArray, std::vector<int> rightArray)
     return (result);
 }
 
-std::vector<int> insertionSort(std::vector<int> input)
+std::deque<int> insertionSort(std::deque<int> input)
 {
     for (int i = 1; i < input.size(); i++)
     {
@@ -76,9 +77,9 @@ std::vector<int> insertionSort(std::vector<int> input)
 }
 
 
-std::vector<int> mergeSort(std::vector<int> input)
+std::deque<int> mergeSort(std::deque<int> input)
 {
-    std::vector<int>::iterator middle;
+    std::deque<int>::iterator middle;
 
     // if (input.size() == 1)
     //     return input;
@@ -87,14 +88,14 @@ std::vector<int> mergeSort(std::vector<int> input)
 
     middle = input.begin() + input.size() / 2;
 
-    std::vector<int> leftVector =  mergeSort(std::vector<int>(input.begin(), middle));
-    std::vector<int> rightVector = mergeSort(std::vector<int>(middle, input.end()));
+    std::deque<int> leftVector =  mergeSort(std::deque<int>(input.begin(), middle));
+    std::deque<int> rightVector = mergeSort(std::deque<int>(middle, input.end()));
     return merge(leftVector, rightVector);
 }
 
-void    printVector(std::vector<int> input, std::string name)
+void    printVector(std::deque<int> input, std::string name)
 {
-     std::vector<int>::iterator print;
+     std::deque<int>::iterator print;
 
     print = input.begin();
     std::cout << name << ": ";
@@ -108,8 +109,8 @@ void    printVector(std::vector<int> input, std::string name)
 
 int main(int argc, char **argv)
 {
-    std::vector<int> data = {9, 14, 4, 6, 5, 8, 7, 2, 44};
-    std::vector<int> result = mergeSort(data);
+    std::deque<int> data = {9, 14, 4, 6, 5, 8, 7, 2, 44};
+    std::deque<int> result = mergeSort(data);
 
     printVector(result, "Result");
     return (0);
