@@ -48,26 +48,14 @@ std::vector<int> merge(std::vector<int> leftArray, std::vector<int> rightArray)
     while (i != leftArray.end() && j != rightArray.end())
     {
         if (*i <= *j)
-        {
-            result.push_back(*i);
-            i++;
-        }
+            result.push_back(*i++);
         else
-        {
-            result.push_back(*j);
-            j++;
-        }
+            result.push_back(*j++);
     }
     while (i != leftArray.end())
-    {
-        result.push_back(*i);
-        i++;
-    }
+        result.push_back(*i++);
     while (j != rightArray.end())
-    {
-        result.push_back(*j);
-        j++;
-    }
+        result.push_back(*j++);
     return (result);
 }
 
