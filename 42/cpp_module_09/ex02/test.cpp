@@ -31,8 +31,8 @@
 //     // This merger function must be using insertion sort.
 // }
 
-void    printVector(std::vector<int> input);
-void    insertionSort(std::vector<int>& input);
+void    printVector(std::vector<int> input, std::string name);
+std::vector<int> insertionSort(std::vector<int> input);
 std::vector<int> mergeSort(std::vector<int> input);
 
 std::vector<int> merge(std::vector<int> leftArray, std::vector<int> rightArray)
@@ -71,7 +71,7 @@ std::vector<int> merge(std::vector<int> leftArray, std::vector<int> rightArray)
     return (result);
 }
 
-void insertionSort(std::vector<int>& input)
+std::vector<int> insertionSort(std::vector<int> input)
 {
     for (int i = 1; i < input.size(); i++)
     {
@@ -84,21 +84,18 @@ void insertionSort(std::vector<int>& input)
         }
         input[j + 1] = key;
     }
+    return (input);
 }
 
 
 std::vector<int> mergeSort(std::vector<int> input)
 {
-    // std::cout << "Size: " << input.size() << std::endl;
     std::vector<int>::iterator middle;
 
-    if (input.size() == 1)
-        return input;
-    // if (input.size() <= 2) // Use insertion sort for small subarrays with a threshold of 2
-    // {
-    //     insertionSort(input);
+    // if (input.size() == 1)
     //     return input;
-    // }
+    if (input.size() <= 4) // Use insertion sort for small subarrays with a threshold of 4
+        return insertionSort(input);
 
     middle = input.begin() + input.size() / 2;
 
@@ -107,13 +104,12 @@ std::vector<int> mergeSort(std::vector<int> input)
     return merge(leftVector, rightVector);
 }
 
-
-void    printVector(std::vector<int> input)
+void    printVector(std::vector<int> input, std::string name)
 {
      std::vector<int>::iterator print;
 
     print = input.begin();
-
+    std::cout << name << ": ";
     while (print != input.end())
     {
         std::cout << *print << " ";
@@ -124,9 +120,9 @@ void    printVector(std::vector<int> input)
 
 int main(int argc, char **argv)
 {
-    std::vector<int> data = {9, 14, 4, 6, 5, 8, 7};
+    std::vector<int> data = {9, 14, 4, 6, 5, 8, 7, 2, 44};
     std::vector<int> result = mergeSort(data);
 
-    printVector(result);
+    printVector(result, "Result");
     return (0);
 }
