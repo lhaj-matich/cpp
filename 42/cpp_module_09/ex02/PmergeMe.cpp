@@ -127,7 +127,66 @@ void	PmergeMe::mergeInsertSortDeq()
 	_vec_sort_time = ((double) (clock() - start)) / CLOCKS_PER_SEC * 1000000;
 }
 
+// Sort Deque
 
+std::deque<int> PmergeMe::insertionSortDeque(std::deque<int> input)
+{
+    for (int i = 1; i < input.size(); i++)
+    {
+        int key = input[i];
+        int j = i - 1;
+        while (j >= 0 && input[j] > key)
+        {
+            input[j + 1] = input[j];
+            j--;
+        }
+        input[j + 1] = key;
+    }
+    return (input);
+}
+
+std::deque<int> PmergeMe::mergeDeques(std::deque<int> leftDeque, std::deque<int> rightDeque)
+{
+	std::deque<int>::iterator i;
+	std::deque<int>::iterator j;
+	std::deque<int> result;
+
+	i = leftDeque.begin();
+	j = rightDeque.begin();
+	while (i != leftDeque.end() && j != rightDeque.end())
+    {
+        if (*i <= *j)
+            result.push_back(*i++);
+        else
+            result.push_back(*j++);
+    }
+    while (i != leftDeque.end())
+        result.push_back(*i++);
+    while (j != rightDeque.end())
+        result.push_back(*j++);
+    return (result);
+}
+
+std::deque<int> PmergeMe::mergeSortDeq(std::deque<int> input)
+{
+	std::deque<int>::iterator middle;
+
+	if (input.size() <= 4)
+		return insertionSortDeque(input);
+	
+	middle = input.begin() + input.size() / 2;
+
+	std::deque<int> leftVector = mergeSortDeq(std::deque<int>(input.begin(), middle));
+	std::deque<int> rightVector = mergeSortDeq(std::deque<int>(middle, input.end()));
+	return (leftVector, rightVector);
+}
+
+void	PmergeMe::mergeInsertSortDeq()
+{
+	clock_t start;
+	_deqnumbers = mergeSortDeq(_deqnumbers);
+	_dec_sort_time = ((double) (clock() - start)) / CLOCKS_PER_SEC * 1000000;
+}
 
 void	PmergeMe::printUnsorted(char **argv, int argc)
 {
