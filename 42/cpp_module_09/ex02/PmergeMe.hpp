@@ -37,14 +37,21 @@ class PmergeMe
 		void	insertNumbers(char **, int);
 		void	printUnsorted(char **, int);
 		void	printSorted();
+		void	printVectorTime();
+		void	printDequeTime();
 
 		// Sort
-
 		void	mergeInsertSortDeq();
 		void	mergeInsertSortVec();
-		std::deque<int> insertionSort(std::deque<int> input);
-		void	mergeVectors();
-		void	mergeDequees();
+
+		std::vector<int> mergeSortVec(std::vector<int>);
+		std::deque<int> mergeSortDeq(std::deque<int>);
+
+		std::deque<int>	mergeDeques(std::deque<int>, std::deque<int>);
+		std::vector<int>	mergeVectors(std::vector<int>, std::vector<int>);
+
+		std::deque<int> insertionSortDeque(std::deque<int> input);
+		std::vector<int> insertionSortVector(std::vector<int> input);
 };
 
 class PmergeMeError: public std::runtime_error
