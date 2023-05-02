@@ -52,17 +52,19 @@ bool	PmergeMe::checkInput(char **input, int size)
 void	PmergeMe::insertNumbers(char **argv, int argc)
 {
 	size_t i;
+	clock_t start;
 
 	i = 0;
-	_vec_parse_start_time = clock();
+	start = clock();
 	while (i < argc)
 		_vecnumbers.push_back(std::atoi(argv[i++]));
-	_vec_parse_end_time = clock();
+	_vec_parse_time = ((double) (clock() - start)) / CLOCKS_PER_SEC * 1000000;
+
 	i = 0;
-	_dec_parse_start_time = clock();
+	start = clock();
 	while (i < argc)
 		_deqnumbers.push_back(std::atoi(argv[i++]));
-	_dec_parse_end_time = clock();
+	_dec_parse_time = ((double) (clock() - start)) / CLOCKS_PER_SEC * 1000000;
 }
 
 
