@@ -18,6 +18,18 @@ PmergeMe::~PmergeMe()
 	std::cout << "\e[0;31mDestructor called of PmergeMe\e[0m" << std::endl;
 }
 
+void	PmergeMe::SortNumbers(char **input, int size)
+{
+	checkInput(input, size);
+	insertNumbers(input, size);
+	mergeInsertSortDeq();
+	mergeInsertSortVec();
+	printUnsorted(input, size);
+	printSorted();
+	// printVectorTime();
+	// printDequeTime();
+}
+
 bool	PmergeMe::checkNumber(char *str)
 {
 	size_t i;
@@ -33,11 +45,11 @@ bool	PmergeMe::checkNumber(char *str)
 	return (true);
 }
 
-bool	PmergeMe::checkInput(char **input, int size)
+void	PmergeMe::checkInput(char **input, int size)
 {
 	size_t i;
 
-	i = 0;
+	i = 1;
 	while (i < size)
 	{
 		if (std::atoi(input[i]) < 0)
@@ -53,13 +65,13 @@ void	PmergeMe::insertNumbers(char **argv, int argc)
 	size_t i;
 	clock_t start;
 
-	i = 0;
+	i = 1;
 	start = clock();
 	while (i < argc)
 		_vecnumbers.push_back(std::atoi(argv[i++]));
 	_vec_parse_time = ((double) (clock() - start)) / CLOCKS_PER_SEC * 1000000;
 
-	i = 0;
+	i = 1;
 	start = clock();
 	while (i < argc)
 		_deqnumbers.push_back(std::atoi(argv[i++]));
@@ -120,7 +132,7 @@ std::vector<int> PmergeMe::mergeSortVec(std::vector<int> input)
 	return (leftVector, rightVector);
 }
 
-void	PmergeMe::mergeInsertSortDeq()
+void	PmergeMe::mergeInsertSortVec()
 {
 	clock_t start;
 	_vecnumbers = mergeSortVec(_vecnumbers);
@@ -192,7 +204,7 @@ void	PmergeMe::printUnsorted(char **argv, int argc)
 {
 	size_t i;
 
-	i = 0;
+	i = 1;
 
 	std::cout << "Before: ";
 	while (i < argc)
@@ -208,9 +220,9 @@ void	PmergeMe::printSorted()
 
 	std::cout << "After: ";
 	while (i < _vecnumbers.size())
-		std::cout << _vecnumbers[i] << " ";
-	while (i < _deqnumbers.size())
-		std::cout << _deqnumbers[i] << " ";
+		std::cout << _vecnumbers[i++] << " ";
+	// while (i < _deqnumbers.size())
+	// 	std::cout << _deqnumbers[i++] << " ";
 	std::cout << std::endl;
 }
 

@@ -33,7 +33,7 @@ class PmergeMe
 		clock_t				_vec_parse_time;
 
 		bool	checkNumber(char *);
-		bool	checkInput(char **, int);
+		void	checkInput(char **, int);
 		void	insertNumbers(char **, int);
 		void	printUnsorted(char **, int);
 		void	printSorted();
