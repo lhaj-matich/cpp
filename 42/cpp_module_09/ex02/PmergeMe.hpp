@@ -36,8 +36,15 @@ class PmergeMe
 		bool	checkInput(char **, int);
 		void	insertNumbers(char **, int);
 		void	printUnsorted(char **, int);
-		void	printSortedDeque();
-		void	printSortedVector();
+		void	printSorted();
+
+		// Sort
+
+		void	mergeInsertSortDeq();
+		void	mergeInsertSortVec();
+		std::deque<int> insertionSort(std::deque<int> input);
+		void	mergeVectors();
+		void	mergeDequees();
 };
 
 class PmergeMeError: public std::runtime_error

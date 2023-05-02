@@ -80,6 +80,20 @@ void	PmergeMe::printUnsorted(char **argv, int argc)
 	std::cout << std::endl;
 }
 
+void	PmergeMe::printSorted()
+{
+	size_t i;
+
+	i = 0;
+
+	std::cout << "After: ";
+	while (i < _vecnumbers.size())
+		std::cout << _vecnumbers[i] << " ";
+	while (i < _deqnumbers.size())
+		std::cout << _deqnumbers[i] << " ";
+	std::cout << std::endl;
+}
+
 // Operators
 PmergeMe & PmergeMe::operator=(const PmergeMe &assign)
 {
