@@ -32,13 +32,13 @@ void	PmergeMe::SortNumbers(char **input, int size)
 
 void	PmergeMe::printVectorTime(int num)
 {
-	std::cout << "Time to process a range of " << num << " elements with std::vector " <<  \
+	std::cout << "Time to process a range of " << num << " elements with std::vector : " <<  \
 	_vec_parse_time + _vec_sort_time << " us" << std::endl;
 }
 
 void	PmergeMe::printDequeTime(int num)
 {
-	std::cout << "Time to process a range of " << num << " elements with std::deque " <<  \
+	std::cout << "Time to process a range of " << num << " elements with std::deque : " <<  \
 	_dec_parse_time + _dec_sort_time << " us" << std::endl;
 }
 
