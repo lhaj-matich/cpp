@@ -27,7 +27,7 @@ void    BitcoinExchange::loadDatabase()
         file.close();
     }
     else 
-        throw ExchangeError("Could not open data.csv, please provide a valid one.");
+        throw ExchangeError("Error: could not open data.csv, please provide a valid one.");
 }
 
 void    BitcoinExchange::calculateRates(std::string filename)
@@ -58,7 +58,7 @@ void    BitcoinExchange::calculateRates(std::string filename)
         file.close();
     }
     else 
-        throw ExchangeError("Could not open the input file, please provide a valid one.");
+        throw ExchangeError("Error: could not open the input file, please provide a valid one.");
 }
 
 std::string stripSpaces(std::string &str){

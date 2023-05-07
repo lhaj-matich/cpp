@@ -2,11 +2,11 @@
 
 int main(int argc, char **argv)
 {
-    if (argc < 2)
-        return (0);
     try 
     {
         PmergeMe set;
+        if (argc < 2)
+            throw PmergeMeError("Error: please provide a valid set of numbers.");
         set.SortNumbers(argv, argc);
     }
     catch (PmergeMeError &e)

@@ -2,13 +2,13 @@
 
 int main(int argc, char **argv)
 {
-    RPN instance;
-
     try {
-        instance.calculateExpression("7 7 * 7 -");
-        instance.calculateExpression("1 2 * 2 / 2 * 2 4 - +");
-        instance.calculateExpression("1 + 1");
-    } catch (std::runtime_error &e)
+        RPN instance;
+
+        if (argc < 2)
+            throw RPNError("Error: please provide a valid expression.");
+        instance.calculateExpression(argv[1]);
+    } catch (RPNError &e)
     {
         std::cout << e.what() << std::endl;
     }
