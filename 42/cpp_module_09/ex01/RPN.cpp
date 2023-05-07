@@ -1,23 +1,13 @@
 #include "RPN.hpp"
 
 // Constructors
-RPN::RPN()
-{
-	std::cout << "\e[0;33mDefault Constructor called of RPN\e[0m" << std::endl;
-}
+RPN::RPN(){}
 
-RPN::RPN(const RPN &copy)
-{
-	(void) copy;
-	std::cout << "\e[0;33mCopy Constructor called of RPN\e[0m" << std::endl;
-}
+RPN::RPN(const RPN &copy) {(void) copy;}
 
 
 // Destructor
-RPN::~RPN()
-{
-	std::cout << "\e[0;31mDestructor called of RPN\e[0m" << std::endl;
-}
+RPN::~RPN(){}
 
 
 // Operators
@@ -76,7 +66,6 @@ int RPN::getResult()
 	result = this->_dataStack.top();
 	// Clear the stack for future input
 	this->_dataStack.pop();
-	
 	return (result);
 }
 
@@ -91,8 +80,7 @@ int	RPN::calculateNumbers(int a, int b, char operand)
 		return (a * b);
 	else if (operand == '/')
 		return (a / b);
-	else
-		std::cout << "Unkown operand, please correct the expression." << std::endl;
+	return (0);
 }
 
 int	RPN::identifyToken(char c)

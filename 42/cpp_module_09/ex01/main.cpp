@@ -8,7 +8,8 @@ int main(int argc, char **argv)
         if (argc < 2)
             throw RPNError("Error: please provide a valid expression.");
         instance.calculateExpression(argv[1]);
-    } catch (RPNError &e)
+    } 
+    catch (RPNError &e)
     {
         std::cout << e.what() << std::endl;
     }
