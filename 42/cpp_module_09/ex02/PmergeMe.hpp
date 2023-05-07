@@ -2,6 +2,7 @@
 # define PMERGEME_HPP
 
 # include <iostream>
+# include <cstdlib>
 # include <string>
 # include <vector>
 # include <deque>
@@ -33,7 +34,7 @@ class PmergeMe
 		double				_vec_parse_time;
 
 		bool	checkNumber(char *);
-		void	checkInput(char **, int);
+		void	checkInput(char **, size_t);
 		void	insertNumbers(char **, int);
 		void	printUnsorted(char **, int);
 		void	printSorted();

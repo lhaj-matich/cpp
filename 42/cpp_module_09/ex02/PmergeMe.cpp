@@ -1,22 +1,12 @@
 #include "PmergeMe.hpp"
 
 // Constructors
-PmergeMe::PmergeMe()
-{
-	std::cout << "\e[0;33mDefault Constructor called of PmergeMe\e[0m" << std::endl;
-}
+PmergeMe::PmergeMe() { }
 
-PmergeMe::PmergeMe(const PmergeMe &copy)
-{
-	(void) copy;
-	std::cout << "\e[0;33mCopy Constructor called of PmergeMe\e[0m" << std::endl;
-}
+PmergeMe::PmergeMe(const PmergeMe &copy){ (void) copy; }
 
 // Destructor
-PmergeMe::~PmergeMe()
-{
-	std::cout << "\e[0;31mDestructor called of PmergeMe\e[0m" << std::endl;
-}
+PmergeMe::~PmergeMe() { }
 
 void	PmergeMe::SortNumbers(char **input, int size)
 {
@@ -57,7 +47,7 @@ bool	PmergeMe::checkNumber(char *str)
 	return (true);
 }
 
-void	PmergeMe::checkInput(char **input, int size)
+void	PmergeMe::checkInput(char **input, size_t size)
 {
 	size_t i;
 
@@ -75,17 +65,19 @@ void	PmergeMe::checkInput(char **input, int size)
 void	PmergeMe::insertNumbers(char **argv, int argc)
 {
 	size_t i;
+	size_t args_number;
 	clock_t start;
 
 	i = 1;
+	args_number = argc;
 	start = clock();
-	while (i < argc)
+	while (i < args_number)
 		_vecnumbers.push_back(std::atoi(argv[i++]));
 	_vec_parse_time = (double(clock() - start) / CLOCKS_PER_SEC) * 1000000;
 
 	i = 1;
 	start = clock();
-	while (i < argc)
+	while (i < args_number)
 		_deqnumbers.push_back(std::atoi(argv[i++]));
 	_dec_parse_time = (double(clock() - start) / CLOCKS_PER_SEC) * 1000000;
 }
@@ -94,7 +86,7 @@ void	PmergeMe::insertNumbers(char **argv, int argc)
 
 std::vector<int> PmergeMe::insertionSortVector(std::vector<int> input)
 {
-    for (int i = 1; i < input.size(); i++)
+    for (size_t i = 1; i < input.size(); i++)
     {
         int key = input[i];
         int j = i - 1;
@@ -157,7 +149,7 @@ void	PmergeMe::mergeInsertSortVec()
 
 std::deque<int> PmergeMe::insertionSortDeque(std::deque<int> input)
 {
-    for (int i = 1; i < input.size(); i++)
+    for (size_t i = 1; i < input.size(); i++)
     {
         int key = input[i];
         int j = i - 1;
@@ -223,7 +215,7 @@ void	PmergeMe::printUnsorted(char **argv, int argc)
 	i = 1;
 
 	std::cout << "Before: ";
-	while (i < argc)
+	while (i < (size_t)argc)
 		std::cout << argv[i++] << " ";
 	std::cout << std::endl;
 }
