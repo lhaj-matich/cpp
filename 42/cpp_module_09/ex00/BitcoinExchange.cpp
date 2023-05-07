@@ -1,15 +1,8 @@
 #include "BitcoinExchange.hpp"
 
-BitcoinExchange::BitcoinExchange()
-{
-    this->loadDatabase();
-    std::cout << "Default consturctor" << std::endl;
-}
+BitcoinExchange::BitcoinExchange() { this->loadDatabase(); }
 
-BitcoinExchange::~BitcoinExchange()
-{
-    std::cout << "Default destructor" << std::endl;
-}
+BitcoinExchange::~BitcoinExchange(){}
 
 void    BitcoinExchange::loadDatabase()
 {
@@ -34,7 +27,7 @@ void    BitcoinExchange::loadDatabase()
         file.close();
     }
     else 
-        std::cout << "Failed to open the database file!" << std::endl;
+        throw ExchangeError("Could not open data.csv, please provide a valid one.");
 }
 
 void    BitcoinExchange::calculateRates(std::string filename)
@@ -65,7 +58,7 @@ void    BitcoinExchange::calculateRates(std::string filename)
         file.close();
     }
     else 
-        std::cout << "Failed to open the input file!" << std::endl;
+        throw ExchangeError("Could not open the input file, please provide a valid one.");
 }
 
 std::string stripSpaces(std::string &str){

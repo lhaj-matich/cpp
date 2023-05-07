@@ -6,8 +6,9 @@
 #include <fstream>
 #include <string>
 #include <sstream>
-#include <algorithm>
+// #include <algorithm>
 #include <iomanip>
+#include <exception>
 
 class	BitcoinExchange
 {
@@ -25,6 +26,14 @@ class	BitcoinExchange
         BitcoinExchange(BitcoinExchange const &src);
 
         ~BitcoinExchange(void);
+};
+
+class ExchangeError: public std::runtime_error
+{
+    public:
+        ExchangeError (std::string const& msg):
+            std::runtime_error(msg)
+        {}
 };
 
 std::string *split(std::string line, char del);
