@@ -6,20 +6,21 @@
 #include <fstream>
 #include <string>
 #include <sstream>
-// #include <algorithm>
+#include <ctime>
+#include <cstdlib>
 #include <iomanip>
 #include <exception>
 
 class	BitcoinExchange
 {
     private:
-        std::map<std::string, float> _exchangeDatabase;
+        std::map<std::string, double> _exchangeDatabase;
 
         bool    check_date(std::string & date);
         bool    check_number(std::string & value);
         bool    check_table(std::string *table);
         void    loadDatabase();
-        float   getExchangeRate(std::string & date);
+        double   getExchangeRate(std::string & date);
     public:
         void    calculateRates(std::string filename);
         BitcoinExchange(void);

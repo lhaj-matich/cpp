@@ -13,12 +13,14 @@ void    BitcoinExchange::loadDatabase()
     float           exchange_rate;
 
     if (file.is_open()) {
+        if (file.peek() == EOF)
+            throw ExchangeError("Error: empty data.csv file.");
         while (std::getline(file, line)) 
         {
             result = split(line, ',');
             if (this->check_table(result) && this->check_date(result[0]))
             {
-                exchange_rate = std::stof(result[1]);
+                exchange_rate = std::atof(result[1].c_str());
                 date = result[0];
                 this->_exchangeDatabase.insert(std::make_pair(date, exchange_rate));
             }
@@ -32,12 +34,14 @@ void    BitcoinExchange::loadDatabase()
 
 void    BitcoinExchange::calculateRates(std::string filename)
 {
-    std::ifstream   file(filename);
+    std::ifstream   file(filename.c_str());
     std::string     line;
     std::string     date;
     std::string     *result;
     float           btc_amount;
 
+    if (this->_exchangeDatabase.size() == 0)
+        return ;
     if (file.is_open()) {
         while (std::getline(file, line)) 
         {
@@ -46,7 +50,7 @@ void    BitcoinExchange::calculateRates(std::string filename)
                 result = split(line, '|');
                 if (this->check_table(result) && this->check_date(result[0]) && this->check_number(result[1]))
                 {
-                    btc_amount = std::stof(stripSpaces(result[1]));
+                    btc_amount = std::atof(stripSpaces(result[1]).c_str());
                     date = stripSpaces(result[0]);
                     std::cout << date << " => " << btc_amount << " = " << btc_amount * this->getExchangeRate(date) << std::endl;
                 }
@@ -71,7 +75,7 @@ std::string stripSpaces(std::string &str){
 
 bool    BitcoinExchange::check_table(std::string *table)
 {
-    if (!table || table[0].empty() || table[1].empty())
+    if (table == NULL || table[0].empty() || table[1].empty())
         return (false);
     return (true);
 }
@@ -80,10 +84,8 @@ std::string *split(std::string line, char del)
 {
     std::string *result;
     size_t      pos;
-    size_t      index;
 
     result = new std::string[2];
-    index = 0;
     pos = line.find(del);
     if (pos != std::string::npos)
     {
@@ -94,18 +96,14 @@ std::string *split(std::string line, char del)
     return (NULL);
 }
 
-float   BitcoinExchange::getExchangeRate(std::string & date)
+double   BitcoinExchange::getExchangeRate(std::string & date)
 {
-    std::map<std::string, float>::iterator it;
+    std::map<std::string, double>::iterator it;
 
     it = this->_exchangeDatabase.find(date);
     if (it == this->_exchangeDatabase.end())
-    {
-        it = this->_exchangeDatabase.lower_bound(date);
-        this->getExchangeRate((std::string &)it->first);
-    }
-    else
-        return (it->second);
+        return (std::prev(this->_exchangeDatabase.lower_bound(date))->second);
+    return (it->second);
 }
 
 bool    BitcoinExchange::check_date(std::string &date)
@@ -115,11 +113,10 @@ bool    BitcoinExchange::check_date(std::string &date)
 
     if (date.find("date") != std::string::npos)
         return (false);
-    ss >> std::get_time(&dateStruct, "%Y-%m-%d");
-    if (ss.fail())
+    if (strptime(date.c_str(), "%Y-%m-%d", &dateStruct) == NULL)
     {
         std::cout << "Error: bad input => " << date << std::endl;
-        return (false);
+        return false;
     }
     return (true);
 }
@@ -131,7 +128,7 @@ bool    BitcoinExchange::check_number(std::string &input)
     if (input.find("value") != std::string::npos)
         return (false);
     try {
-        value = std::stof(input);
+        value = std::atof(input.c_str());
         if (value < 0)
             return (std::cout << "Error: not a positive number." << std::endl ,false);
         else if (value > 1000)

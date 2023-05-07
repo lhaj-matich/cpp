@@ -6,7 +6,7 @@ int main(int argc, char **argv)
         BitcoinExchange instance;
         if (argc < 2)
             throw ExchangeError("Error: could not open file.");
-        instance.calculateRates("input.txt");
+        instance.calculateRates(argv[1]);
     } catch (ExchangeError &e)
     {
         std::cout << e.what() << std::endl;
