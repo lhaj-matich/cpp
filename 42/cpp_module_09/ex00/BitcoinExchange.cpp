@@ -38,6 +38,7 @@ void    BitcoinExchange::calculateRates(std::string filename)
     std::string     line;
     std::string     date;
     std::string     *result;
+    std::string     raw_amount;
     float           btc_amount;
 
     if (this->_exchangeDatabase.size() == 0)
@@ -50,9 +51,15 @@ void    BitcoinExchange::calculateRates(std::string filename)
                 result = split(line, '|');
                 if (this->check_table(result) && this->check_date(result[0]) && this->check_number(result[1]))
                 {
-                    btc_amount = std::atof(stripSpaces(result[1]).c_str());
-                    date = stripSpaces(result[0]);
-                    std::cout << date << " => " << btc_amount << " = " << btc_amount * this->getExchangeRate(date) << std::endl;
+                    raw_amount = stripSpaces(result[1]);
+                    if (raw_amount.find(".") == 0 || raw_amount.find(".") == (raw_amount.length() - 1))
+                        std::cout << "Error: invalid => " << line << std::endl;
+                    else 
+                    {
+                        btc_amount = std::atof(raw_amount.c_str());
+                        date = stripSpaces(result[0]);
+                        std::cout << date << " => " << btc_amount << " = " << btc_amount * this->getExchangeRate(date) << std::endl;
+                    }
                 }
                 delete [] result;
             }
@@ -121,12 +128,16 @@ bool    BitcoinExchange::check_date(std::string &date)
     return (true);
 }
 
+
+
 bool    BitcoinExchange::check_number(std::string &input)
 {
     float   value;
 
     if (input.find("value") != std::string::npos)
         return (false);
+    else if (this->check_numeric(input))
+        return (std::cout << "Error: invalid number format." << std::endl ,false);
     try {
         value = std::atof(input.c_str());
         if (value < 0)

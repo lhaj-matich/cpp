@@ -18,6 +18,7 @@ class	BitcoinExchange
 
         bool    check_date(std::string & date);
         bool    check_number(std::string & value);
+        bool    check_numeric(std::string & value);
         bool    check_table(std::string *table);
         void    loadDatabase();
         double   getExchangeRate(std::string & date);
