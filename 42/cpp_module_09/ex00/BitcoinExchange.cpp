@@ -113,6 +113,13 @@ double   BitcoinExchange::getExchangeRate(std::string & date)
     return (it->second);
 }
 
+bool    BitcoinExchange::check_leap(int year)
+{
+    if ((year % 4 == 0) || ((year % 100 == 0) && (year % 400 == 0)))
+        return true;
+    return false;
+}
+
 bool    BitcoinExchange::check_date(std::string &date)
 {
     std::tm dateStruct = {};
@@ -121,14 +128,33 @@ bool    BitcoinExchange::check_date(std::string &date)
     if (date.find("date") != std::string::npos)
         return (false);
     if (strptime(date.c_str(), "%Y-%m-%d", &dateStruct) == NULL)
-    {
-        std::cout << "Error: bad input => " << date << std::endl;
-        return false;
-    }
+        return (std::cout << "Error: bad input => " << date << std::endl, false);
+    if ((dateStruct.tm_mon + 1) == 2 && dateStruct.tm_mday > 28 && !check_leap(dateStruct.tm_year + 1900))
+        return (std::cout << "Error: bad input => " << date << std::endl, false);
+    if ((dateStruct.tm_mon + 1) == 2 && dateStruct.tm_mday > 29 && check_leap(dateStruct.tm_year + 1900))
+        return (std::cout << "Error: bad input => " << date << std::endl, false);
+    if ((dateStruct.tm_mon + 1) == 8 && dateStruct.tm_mday == 31)
+        return (true);
+    if ((dateStruct.tm_mon + 1) % 2 == 0 && dateStruct.tm_mday > 30 && dateStruct.tm_mon < 8)
+        return (std::cout << "Error: bad input => " << date << std::endl, false);
+    if ((dateStruct.tm_mon + 1) % 2 != 0 && dateStruct.tm_mday > 30 && dateStruct.tm_mon > 8)
+        return (std::cout << "Error: bad input => " << date << std::endl, false);
     return (true);
 }
 
+bool    BitcoinExchange::check_numeric(std::string str)
+{
+    size_t index;
 
+    index = 0;
+    while (index < str.length())
+    {
+        if (!isdigit(str[index]) && !isspace(str[index]) && str[index] != '.' && str[index] != '-')
+            return (false);
+        index += 1;
+    }
+    return (true);
+}
 
 bool    BitcoinExchange::check_number(std::string &input)
 {
@@ -136,9 +162,10 @@ bool    BitcoinExchange::check_number(std::string &input)
 
     if (input.find("value") != std::string::npos)
         return (false);
-    else if (this->check_numeric(input))
-        return (std::cout << "Error: invalid number format." << std::endl ,false);
-    try {
+    else if (!this->check_numeric(input))
+        return (std::cout << "Error: invalid number format: " << input << std::endl ,false);
+    try 
+    {
         value = std::atof(input.c_str());
         if (value < 0)
             return (std::cout << "Error: not a positive number." << std::endl ,false);
